@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+}
+.background {
+    position: absolute;
+    z-index: -1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: white;
+}
+.header {
+    background-color: #72aa70;
+}
+.header__back>img {
+    padding: 30px;
+}
+
+/* List */
+.list__item {
+    display: block;
+    font: bold 30px sans-serif;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+    padding: 15px 0;
+    border-radius: 16px;
+    background-color: #29b88c;
+}
+
+/* Networks */
+.networks {
+    display: flex;
+    justify-content: center;
+}
+.networks__item {
+    margin: 30px;
+}
+.networks__item>img {
+    height: 50px;
+}

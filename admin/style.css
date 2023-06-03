@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    background-color: #ececf1;
+}
+form {
+    margin: 0;
+}
+.button {
+    font: bold 15px sans-serif;
+    color: white;
+    text-align: center;
+    padding: 0;
+    background-color: unset;
+    border: none;
+    padding: 7px;
+    background-color: #29b88c;
+    border-radius: 8px;
+}
+button {
+    padding: 0;
+    background-color: unset;
+    border: none;
+}
+input:focus {
+    outline: none;
+}
+
+/* Login */
+.login {
+    margin: 20px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+}
+.login__logo {
+    text-align: center;
+}
+.login__logo>img {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+}
+.login__title {
+    font: bold 25px sans-serif;
+    text-align: center;
+    color: #444;
+    line-height: 2;
+}
+.login__field {
+    position: relative;
+    text-align: center;
+    margin: 15px 0 0 0;
+}
+.login__signature {
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    font: normal 15px sans-serif;
+    color: #1a73e8;
+    padding: 0 5px;
+    background-color: #fff;
+}
+.login__eye {
+    position: absolute;
+    top: -6px;
+    right: 0px;
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+}
+.login__input {
+    border-radius: 8px;
+    border: 1px solid #1a73e8;
+    font: normal 15px sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 7px;
+}
+.login__confirm {
+    margin: 10px 0 0 0;
+}
+
+/* Header */
+.header {
+    background-color: #29b88c;
+}
+.header__item {
+    padding: 7px;
+    vertical-align: -4px;
+}
+
+/* Functions */
+.functions__item {
+    margin: 7px 15px 0 15px;
+}
+.functions__item>button {
+    font: bold 15px sans-serif;
+    color: #fff;
+    border: none;
+    padding: 7px 0;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #29b88c;
+}
