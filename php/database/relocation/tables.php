@@ -6,7 +6,14 @@ class Tables extends Database {
             "first_name" => "TEXT",
             "last_name" => "TEXT",
             "password" => "TEXT",
-        ]
+        ],
+        "categories" => [
+            "id" => "INT",
+            "parent" => "INT",
+            "type" => "TEXT",
+            "list" => "TEXT",
+            "name" => "TEXT"
+        ],
         "products" => [
         ]
     ];

@@ -83,11 +83,15 @@ input:focus {
 
 /* Header */
 .header {
+    display: flex;
     background-color: #29b88c;
 }
 .header__item {
     padding: 7px;
     vertical-align: -4px;
+}
+.header__favicon {
+    display: flex;
 }
 
 /* Functions */
