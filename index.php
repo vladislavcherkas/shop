@@ -1,95 +1,98 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/php/products/products.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/php/products/products-photos.php");
-$products = new Products();
-$list_products = $products->getAll();
-if (count($list_products) > 12) {
-    array_slice($list_products, -12, 12);
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
+$products = array_reverse(ReaderProducts::getAll());
+if (count($products) > 12) {
+    $products = array_slice($products, 0, 12);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=720, initial-scale=1.0">
-    <title>Пелюшки багаторазові</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пелюшки</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
-        <div class="header__top">
-            <div class="header__description">Мы працюэмо з 8:00 до 20:00</div>
-            <div class="header__title">
-                <span>Багаторазові пелюшки виготовлені із якісних матеріалів, повністю непромокаємі.</span>
-            </div>
+        <div class="header__title">Ми працюємо з 8:00 до 20:00</div>
+        <div class="header__subtitle">
+            Багаторазові пелюшки виготовлені із якісних матеріалів, повністю непромокаємі
         </div>
-        <div class="header__wrap">
-            <a href="menu"><img class="header__menu" src="images/menu.png"
-                width="40" height="33"></a>
-            <img class="header__call" src="images/call.png" width="40" height="40">
+        <div class="header__bar">
+            <a class="header__item" href="/menu/?path-past=/"><img src="/images/menu.png" width="25" height="25">
+            </a>
+            <a class="header__item" href="/call/?path-past=/"><img src="/images/call.png" width="25" height="25">
+            </a>
         </div>
     </div>
-    <div class="product">
-        <div class="product__title">Свiжi товари</div>
-        <div class="product__list">
-            <?php foreach ($list_products as $product): ?>
-            <?php $photo = (new ProductsPhotos($product["id"]))->getMajor() ?>
-            <?php $description = $product["description"] ?>
-            <?php $existence = $product["existence"] ?>
-            <?php $price = $product["price"] ?>
-            <div class="product__item">
-                <div class="product__photo">
-                    <img src="<?php echo $photo ?>">
+    <div class="products">
+        <div class="products__name">
+            Свіжі товари
+            <a href="/categories/?path-past=/">Всі товари</a>
+        </div>
+        <div class="products__list">
+            <?php foreach ($products as $product): ?>
+                <div class="products__item">
+                    <div class="products__photo">
+                        <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                    </div>
+                    <div class="products__title">
+                        <?php echo $product["title"] ?>
+                    </div>
+                    <div class="products__existence">
+                        <?php echo $product["existence"] ?>
+                    </div>
+                    <div class="products__price">
+                        <?php echo $product["price"] ?>
+                    </div>
+                    <a href="/product?id=<?php echo $product["id"] ?>&path-past=/">
+                        <div class="products__open">Переглянути</div>
+                    </a>
                 </div>
-                <div class="product__description"><?php echo $description ?></div>
-                <div class="product__existence"><?php echo $existence ?></div>
-                <div class="product__price">
-                    <span class="product__value"><?php echo $price ?></span>
-                    <span class="product__unit">грн</span>
-                </div>
-                <div class="product__open">Переглянути</div>
-            </div>
             <?php endforeach ?>
         </div>
-        <div class="product__more">Показати ще</div>
     </div>
-    <div class="footer">
-        <div class="footer__sections">
+    <div class="footer" id="footer">
+        <div class="footer__list">
             <div class="footer__item">
-                <div class="footer__title">Для споживачiв</div>
-                <div class="footer__list">
-                    <a class="footer__link" href="">Про нас</a>
-                    <a class="footer__link" href="">Контакти</a>
-                </div>
+                <div class="footer__title">Для споживачів</div>
+                <a href="/about/index.php?path-past=/">
+                    <div class="footer__link">Про нас</div>
+                </a>
+                <a href="/contacts/index.php?path-past=/">
+                    <div class="footer__link">Контакти</div>
+                </a>
             </div>
             <div class="footer__item">
                 <div class="footer__title">Контакти</div>
-                <div class="footer__list">
-                    <a class="footer__link" href="tel:+380971766257">
-                        +380 97 176 62 57</a>
-                    <a class="footer__link" href="https://t.me/pelyshkaglysobak"
-                        target="_blank">Telegram</a>
-                    <a class="footer__link" href="https://instagram.com/textile_cutefoxi?igshid=NTc4MTIwNjQ2YQ=="
-                        target="_blank">Instagram</a>
-                    <a class="footer__link" href="https://www.olx.ua/d/obyavlenie/mnogorazovye-nepromokaemye-pelenki-sobak-pelenka-zhivotnyh-podstilka-IDPkOLA.html"
-                        target="_blank">Olx</a>
-                </div>
+                <a href="tel:380971766257">
+                    <div class="footer__link">+380 97 176 62 57</div>
+                </a>
+                <a href="https://t.me/cutefoxi">
+                    <div class="footer__link">Telegram</div>
+                </a>
+                <a href="https://instagram.com/textile_cutefoxi?igshid=NTc4MTIwNjQ2YQ==">
+                    <div class="footer__link">Instagram</div>
+                </a>
+                <a href="https://www.olx.ua/d/obyavlenie/mnogorazovye-nepromokaemye-pelenki-sobak-pelenka-zhivotnyh-podstilka-IDPkOLA.html">
+                    <div class="footer__link">Olx</div>
+                </a>
             </div>
         </div>
-        <div class="footer__neworks">
-            <div class="networks">
-                <a class="networks__item" href="https://t.me/pelyshkaglysobak"
-                    target="_blank"><img src="/images/telegram.png"></a>
-                <a class="networks__item" href="https://instagram.com/textile_cutefoxi?igshid=NTc4MTIwNjQ2YQ=="
-                    target="_blank"><img src="/images/instagram.png"></a>
-                <a class="networks__item" href="https://www.olx.ua/d/obyavlenie/mnogorazovye-nepromokaemye-pelenki-sobak-pelenka-zhivotnyh-podstilka-IDPkOLA.html"
-                    target="_blank"><img src="/images/olx.png"></a>
-            </div>
+        <div class="footer__contacts">
+            <a href="https://t.me/cutefoxi">
+                <img src="/images/telegram.png" class="footer__contact" width="25" height="25">
+            </a>
+            <a href="https://www.olx.ua/d/obyavlenie/mnogorazovye-nepromokaemye-pelenki-sobak-pelenka-zhivotnyh-podstilka-IDPkOLA.html">
+                <img src="/images/olx.png" class="footer__contact" width="25" height="25">
+            </a>
+            <a href="https://instagram.com/textile_cutefoxi?igshid=NTc4MTIwNjQ2YQ==">
+                <img src="/images/instagram.png" class="footer__contact" width="25" height="25">
+            </a>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>

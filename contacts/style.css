@@ -23,33 +23,37 @@ a {
     padding: 10px;
 }
 
-/* Menu */
-.menu {
-    margin: 10px 0 0 0;
+/* Article */
+.article__title {
+    font: bold 1.3em sans-serif;
+    padding: 10px;
+}
+.article__body {
     background-color: #fff;
     padding: 10px 0;
+    margin: 10px 0 0 0;
 }
-.menu__button {
-    font: bold 14px sans-serif;
-    color: white;
-    border-radius: 8px;
-    text-align: center;
-    padding: 5px 0;
+.article__body_first {
+    margin: 0;
+}
+.article__subtitle {
+    font: normal 1.1em sans-serif;
     margin: 10px;
-    background-color: #72aa70;
+    text-transform: uppercase;
 }
-.menu__button_icon {
+.article__p {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin: 0 0 0 10px;
 }
-.menu__button_icon>span {
+.article__p>span {
+    font: normal 1em sans-serif;
     margin: 0 0 0 10px;
 }
 @media (min-width: 600px) {
-    .menu {
+    .article {
         width: 600px;
-        margin: 10px auto 0 auto;
+        margin: 0 auto;
     }
 }
 

@@ -1,0 +1,116 @@
+body {
+    font-size: 14px;
+    margin: 0;
+    background-color: #ececf1;
+}
+a {
+    text-decoration: none;
+}
+
+/* Header */
+.header {
+    font: bold 14px sans-serif;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    background-color: #72aa70;
+}
+.header__bar {
+    display: flex;
+}
+.header__item {
+    display: flex;
+    padding: 10px;
+}
+
+/* Article */
+.article__title {
+    font: bold 18px sans-serif;
+    padding: 10px;
+}
+.article__body {
+    background-color: #fff;
+    padding: 0 0 10px 0;
+}
+.article__description {
+    font: normal 14px sans-serif;
+    padding: 10px;
+}
+.article__button {
+    font: bold 14px sans-serif;
+    color: white;
+    margin: 10px 10px 0 10px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #72aa70;
+}
+.article__button_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.article__button_icon>img {
+    padding: 0 5px 0 0;
+}
+.article__wrap {
+    padding: 10px 10px 0 10px;
+}
+.article__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.article__table>thead {
+    background-color: #ccc;
+    font: bold 1em sans-serif;
+    height: 2em;
+    text-align: center;
+}
+.article__table>thead>tr>td,
+.article__table>tbody>tr>td {
+    border: 1px solid black;
+    width: calc(100% / 3);
+}
+.article__list {
+    font: bold 1em sans-serif;
+    margin: 0;
+}
+@media (min-width: 600px) {
+    .article {
+        width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* Menu */
+.menu__button {
+    font: bold 14px sans-serif;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px 0;
+    margin: 10px 0 0 0;
+    background-color: #72aa70;
+}
+.menu__button_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu__button_icon>span {
+    margin: 0 0 0 10px;
+}
+
+/* Footer */
+.footer {
+    margin: 20px 0 0 0;
+    background-color: white;
+}
+.footer__contacts {
+    display: flex;
+    justify-content: center;
+}
+.footer__contacts>a {
+    padding: 10px;
+    display: flex;
+}
