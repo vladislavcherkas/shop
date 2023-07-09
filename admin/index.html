@@ -10,10 +10,208 @@
 <body>
     <div class="layout">
         <div class="layout__screen login">
-            ВЁРСТКА
+            <div class="login__body">
+                <div class="login__logotype">
+                    <img src="/images/favicon.png" width="50" height="50">
+                </div>
+                <div class="login__title">Вход</div>
+                <div hidden class="login__fail">Неверные данные</div>
+                <div class="login__field">
+                    <div class="login__signature">Имя</div>
+                    <input class="login__input" type="text">
+                </div>
+                <div class="login__field">
+                    <div class="login__signature">Фамилия</div>
+                    <input class="login__input" type="text">
+                </div>
+                <div class="login__field">
+                    <div class="login__signature">Пароль</div>
+                    <input class="login__input" type="password">
+                    <img class="login__eye" src="/images/eye.png" width="20" height="20">
+                </div>
+                <div class="login__send">Дальше</div>
+            </div>
         </div>
         <div class="layout__screen main">
-            2
+            <div class="main__header">
+                <div class="main__item">
+                    <img src="/images/leave.png" width="25" height="25">
+                </div>
+                <div class="main__item">
+                    <img src="/images/add.png" width="25" height="25">
+                </div>
+            </div>
+            <div class="main__search">
+                <div class="main__signature">Поиск</div>
+                <input class="main__input">
+            </div>
+            <div class="main__bar">
+                <div class="main__button">Товар</div>
+                <div class="main__button">Настройки</div>
+                <div class="main__button">Категории</div>
+                <div class="main__button">Администраторы</div>
+            </div>
+        </div>
+        <div class="layout__screen products">
+            <div class="products__header">
+                <div class="products__item">
+                    <img src="/images/back.png" width="25" height="25">
+                </div>
+                <div class="products__item">
+                    <img src="/images/add.png" width="25" height="25">
+                </div>
+            </div>
+            <div class="products__wrap">
+                <table class="products__table">
+                    <tbody class="products__tbody">
+                        <tr class="products__row">
+                            <td class="products__data">1</td>
+                            <td class="products__data">Название</td>
+                            <td class="products__data">Цена</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form id="upload-form" enctype="multipart/form-data">
+                <input type="file" id="file-input" name="photo" accept="image/*">
+                <button type="submit">Отправить</button>
+              </form>
+            <div class="products__window">
+                <div class="products__body">
+                    <div class="products__bar-buttons">
+                        <div class="products__button">Отмена</div>
+                        <div class="products__button products__button_red">Удалить</div>
+                        <div class="products__button">Подтвердить изменения</div>
+                        <div class="products__button">Предпросмотр</div>
+                    </div>
+                    <div class="products__gallery"></div>
+                    <div class="products__button products__button_wide">Добавить фото</div>
+                    <input class="products__input-photos" hidden type="file" multiple>
+                    <div class="products__field">
+                        <div class="products__signature">Заголовок товара</div>
+                        <input class="products__input"></input>
+                    </div>
+                    <select class="products__select">
+                        <option>В наявності</option>
+                        <option>Нема в наявності</option>
+                        <option>Нема в наявності</option>
+                    </select>
+                    <div class="products__field">
+                        <div class="products__signature">Цена</div>
+                        <input class="products__input"></input>
+                    </div>
+                    <div class="products__field">
+                        <div class="products__signature">Описание</div>
+                        <textarea class="products__textarea"></textarea>
+                    </div>
+                    <h2 class="products__subtitle">Характеристики</h2>
+                    <table class="products__table">
+                        <tbody class="products__table-body">
+                            <tr class="products__table-row">
+                                <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
+                                <td class="products__table-data products__table-data_dark">Застосування</td>
+                                <td class="products__table-data">Невідоме</td>
+                            </tr>
+                            <tr class="products__table-row">
+                                <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
+                                <td class="products__table-data products__table-data_dark">Застосування</td>
+                                <td class="products__table-data">Невідоме Невідоме Невідоме Невідоме Невідоме Невідоме Невідоме </td>
+                            </tr>
+                            <tr class="products__table-row">
+                                <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
+                                <td class="products__table-data products__table-data_dark">Застосування</td>
+                                <td class="products__table-data">Невідоме</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="products__button products__button_wide">Добавить</div>
+                </div>
+            </div>
+        </div>
+        <div class="layout__screen settings">
+            <div class="settings__header">
+                <div class="settings__item">
+                    <img src="/images/back.png" width="25" height="25">
+                </div>
+            </div>
+            <div class="settings__wrap">
+                <table class="settings__table">
+                    <tbody class="settings__tbody">
+                        <tr class="settings__row">
+                            <td class="settings__data"></td>
+                            <td class="settings__data"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="settings__window">
+                <div class="settings__body">
+                    <div class="settings__field">
+                        <div class="settings__signature">Настройка</div>
+                        <input class="settings__input"></input>
+                    </div>
+                    <div class="settings__bar">
+                        <div class="settings__button">Отмена</div>
+                        <div class="settings__button">Дальше</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layout__screen categories">
+            <div class="categories__header">
+                <div class="categories__item">
+                    <img src="/images/back.png" width="25" height="25">
+                </div>
+            </div>
+        </div>
+        <div class="layout__screen administrators">
+            <div class="administrators__header">
+                <div class="administrators__item">
+                    <img src="/images/back.png" width="25" height="25">
+                </div>
+                <div class="administrators__item">
+                    <img src="/images/add.png" width="25" height="25">
+                </div>
+            </div>
+            <div class="administrators__wrap">
+                <table class="administrators__table">
+                    <thead>
+                        <tr>
+                            <td>Имя</td>
+                            <td>Фамилия</td>
+                            <td>Пароль</td>
+                        </tr>
+                    </thead>
+                    <tbody class="administrators__tbody">
+                        <tr class="administrators__row">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="administrators__window">
+                <div class="administrators__body">
+                    <div class="administrators__field">
+                        <div class="administrators__signature">Имя</div>
+                        <input class="administrators__input"></input>
+                    </div>
+                    <div class="administrators__field">
+                        <div class="administrators__signature">Фамилия</div>
+                        <input class="administrators__input"></input>
+                    </div>
+                    <div class="administrators__field">
+                        <div class="administrators__signature">Пароль</div>
+                        <input class="administrators__input"></input>
+                    </div>
+                    <div class="administrators__bar">
+                        <div class="administrators__button">Отмена</div>
+                        <div class="administrators__button administrators__button_red">Удалить</div>
+                        <div class="administrators__button">Дальше</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
