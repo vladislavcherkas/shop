@@ -72,16 +72,12 @@
                     </tbody>
                 </table>
             </div>
-            <form id="upload-form" enctype="multipart/form-data">
-                <input type="file" id="file-input" name="photo" accept="image/*">
-                <button type="submit">Отправить</button>
-              </form>
             <div class="products__window">
                 <div class="products__body">
                     <div class="products__bar-buttons">
-                        <div class="products__button">Отмена</div>
+                        <div class="products__button">Закрыть</div>
                         <div class="products__button products__button_red">Удалить</div>
-                        <div class="products__button">Подтвердить изменения</div>
+                        <div class="products__button" hidden>Подтвердить изменения</div>
                         <div class="products__button">Предпросмотр</div>
                     </div>
                     <div class="products__gallery"></div>
@@ -92,9 +88,11 @@
                         <input class="products__input"></input>
                     </div>
                     <select class="products__select">
-                        <option>В наявності</option>
-                        <option>Нема в наявності</option>
-                        <option>Нема в наявності</option>
+                        <option value="1">В наявності</option>
+                        <option value="2">Немає в наявності</option>
+                        <option value="3">Під замовлення</option>
+                        <option value="4"></option>
+                        <option value="5">Ошибка</option>
                     </select>
                     <div class="products__field">
                         <div class="products__signature">Цена</div>
@@ -107,24 +105,15 @@
                     <h2 class="products__subtitle">Характеристики</h2>
                     <table class="products__table">
                         <tbody class="products__table-body">
-                            <tr class="products__table-row">
+                            <tr hidden class="products__table-row">
                                 <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
-                                <td class="products__table-data products__table-data_dark">Застосування</td>
-                                <td class="products__table-data">Невідоме</td>
-                            </tr>
-                            <tr class="products__table-row">
-                                <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
-                                <td class="products__table-data products__table-data_dark">Застосування</td>
-                                <td class="products__table-data">Невідоме Невідоме Невідоме Невідоме Невідоме Невідоме Невідоме </td>
-                            </tr>
-                            <tr class="products__table-row">
-                                <td class="products__table-data products__table-data_narrow"><img class="products__image" src="/images/delete_red.png"></td>
-                                <td class="products__table-data products__table-data_dark">Застосування</td>
-                                <td class="products__table-data">Невідоме</td>
+                                <td class="products__table-data products__table-data_dark"><input class="products__table-input"></td>
+                                <td class="products__table-data"><input class="products__table-input"></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="products__button products__button_wide">Добавить</div>
+                    <div class="products__button products__button_wide" id="button-add-product-feature">Добавить</div>
+                    <div class="products__button products__button_wide" id="button-remain-product-feature">Запомнить</div>
                 </div>
             </div>
         </div>

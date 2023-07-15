@@ -599,6 +599,9 @@ class Products {
         };
         this.getListOfServer(receiver);
     }
+    getId() {
+        return instances.products.data[instances.products.id].id;
+    }
 }
 class ProductsWindow {
     photoPicked = false;
@@ -608,6 +611,7 @@ class ProductsWindow {
             products__window: window.document.querySelector(".products__window"),
             products__button: window.document.querySelectorAll(".products__button"),
             products__signature: window.document.querySelectorAll(".products__signature"),
+            products__select: window.document.querySelector(".products__select"),
             products__input: window.document.querySelectorAll(".products__input"),
             products__inputPhotos: window.document.querySelector(".products__input-photos"),
         }
@@ -617,11 +621,16 @@ class ProductsWindow {
         this.dom.products__inputPhotos.addEventListener("change", () => this.sendPhotos());
         this.dom.products__input[0].addEventListener("input", () => this.addBacklightTitleInput());
         this.dom.products__input[0].addEventListener("change", () => this.requestEditTitle());
+        this.dom.products__select.addEventListener("input", () => this.addBacklightSelectInput());
+        this.dom.products__select.addEventListener("change", () => this.requestEditSelect());
+        this.dom.products__input[1].addEventListener("input", () => this.addBacklightPriceInput());
+        this.dom.products__input[1].addEventListener("change", () => this.requestEditPrice());
     }
     open() {
         this.dom.products__window.style.zIndex = 0;
     }
     close() {
+        instances.products.updateList();
         this.unpickAllPhotos();
         this.dom.products__window.style.zIndex = -1;
     }
@@ -782,13 +791,51 @@ class ProductsWindow {
                 }
             });
     }
+    requestEditSelect() {
+        const body = new FormData();
+        body.append("productId", instances.products.data[instances.products.id].id);
+        body.append("existence", this.dom.products__select.value);
+        fetch("php/edit/products-existence.php", {method: "POST", body: body})
+            .then(response => response.text())
+            .then(existence => {
+                if (this.dom.products__select.value === existence) {
+                    this.removeBacklightSelectInput();
+                }
+            });
+    }
+    requestEditPrice() {
+        const body = new FormData();
+        body.append("productId", instances.products.data[instances.products.id].id);
+        body.append("price", this.dom.products__input[1].value);
+        fetch("php/edit/products-price.php", {method: "POST", body: body})
+            .then(response => response.text())
+            .then(price => {
+                if (this.dom.products__input[1].value === price) {
+                    this.removeBacklightPriceInput();
+                }
+            });
+    }
     addBacklightTitleInput() {
-        this.dom.products__signature[0].style.color = "red";
-        this.dom.products__input[0].style.borderColor = "red";
+        this.dom.products__signature[0].style.color = "#ff9900";
+        this.dom.products__input[0].style.borderColor = "#ff9900";
+    }
+    addBacklightSelectInput() {
+        this.dom.products__select.style.borderColor = "#ff9900";
+    }
+    addBacklightPriceInput() {
+        this.dom.products__signature[1].style.color = "#ff9900";
+        this.dom.products__input[1].style.borderColor = "#ff9900";
     }
     removeBacklightTitleInput() {
         this.dom.products__signature[0].style.color = "#1a73e8";
         this.dom.products__input[0].style.borderColor = "#1a73e8";
+    }
+    removeBacklightSelectInput() {
+        this.dom.products__select.style.borderColor = "#1a73e8";
+    }
+    removeBacklightPriceInput() {
+        this.dom.products__signature[1].style.color = "#1a73e8";
+        this.dom.products__input[1].style.borderColor = "#1a73e8";
     }
     deleteAllButtonsOnPhoto() {
         const panels = window.document.querySelectorAll(".products__panel-photo");
@@ -797,21 +844,51 @@ class ProductsWindow {
         }
     }
 }
-class ProductsWindowFiller {
+class ProductsWindowFillerUtility {
+    setExistence(existence) {
+        this.dom.products__select.value = existence;
+    }
+    existenceVerification(existence) {
+        if (this.existenceValues.includes(existence)) {
+            return "true";
+        } else {
+            if (existence === "") {
+                return "warning";
+            } else {
+                return "false";
+            }
+        }
+    }
+}
+class ProductsWindowFiller extends ProductsWindowFillerUtility {
+    existenceValues = ["1", "2", "3", "4", "5"];
     constructor() {
+        super();
         this.dom = {
+            products__select: window.document.querySelector(".products__select"),
             products__input: window.document.querySelectorAll(".products__input"),
             products__textarea: window.document.querySelector(".products__textarea"),
         };
     }
     fillAll(data) {
         this.title(data.title);
+        this.existence(data.existence);
         this.price(data.price);
         this.description(data.description);
         this.photos(data.photos);
     }
     title(title) {
         this.dom.products__input[0].value = title;
+    }
+    existence(existence) {
+        const verification = this.existenceVerification(existence);
+        if (verification === "warning") {
+            existence = "4";
+        }
+        if (verification === "false") {
+            existence = "5";
+        }
+        this.setExistence(existence);
     }
     price(price) {
         this.dom.products__input[1].value = price;
@@ -853,6 +930,246 @@ class ProductsWindowFiller {
         photo.addEventListener("click", () => instances.productsWindow.pickPhoto(idPhotoInDOM));
     }
 }
+class Features {
+    selectorList = {
+        buttonDelete: ".products__image",
+        tableBody: ".products__table-body",
+        tableRow: ".products__table-row",
+        tableData: ".products__table-data",
+        tableInput: ".products__table-input",
+        buttonAdd: "button-add-product-feature",
+        buttonRemain: "button-remain-product-feature",
+    };
+    features = false;
+    featuresLength = false;
+    colorList = {
+        active: "#ff9900",
+        inactive: "#00000000",
+    };
+    setEventListeners() {
+        const dom = this.getDOM(true);
+        dom.buttonAdd.addEventListener("click", () => {console.log("add")});
+        dom.buttonRemain.addEventListener("click", () => {console.log("remain")});
+        // Buttons for deletion
+        let id = 1;
+        let rowId = 1;
+        let columnId = 1;
+        for (let tableData of dom.tableData) {
+            if (rowId > 1) {
+                if (columnId === 1) {
+                    const constId = id++;
+                    tableData.addEventListener("click", () => this.delete(constId));
+                }
+            }
+            rowId = (columnId === 3) ? rowId + 1 : rowId;
+            columnId = (columnId === 3) ? 1 : columnId + 1; 
+        }
+        // Fields
+        id = 1;
+        let absoluteId = 0;
+        for (let tableInput of dom.tableInput) {
+            if (absoluteId > 1) {
+                const constId = id;
+                const constAbsoluteId = absoluteId;
+                tableInput.addEventListener("change", () => this.edit(constAbsoluteId, constId));
+                id++;
+            }
+            absoluteId++;
+        }
+    }
+    setContent() {
+        this.erase();
+        this.uploadFeaturesOfServer(() => {
+            this.createHTML();
+            this.insertInHTML();
+            this.setEventListeners();
+        });
+    }
+    erase() {
+        const rowList = this.getDOM("tableRow").tableRow;
+        let permit = false;
+        for (let row of rowList) {
+            if (permit) {
+                row.parentNode.removeChild(row)
+            } else {
+                permit = true
+            }
+        }
+    }
+    getDOM(elementName) {
+        if (elementName === false) {
+            return false;
+        }
+        const DOM = {};
+        if ((elementName === "tableBody") || (elementName === true)) {
+            DOM.tableBody = window.document.querySelector(this.selectorList.tableBody);
+        }
+        if ((elementName === "tableRow") || (elementName === true)) {
+            DOM.tableRow = window.document.querySelectorAll(this.selectorList.tableRow);
+        }
+        if ((elementName === "tableData") || (elementName === true)) {
+            DOM.tableData = window.document.querySelectorAll(this.selectorList.tableData);
+        }
+        if ((elementName === "tableInput") || (elementName === true)) {
+            DOM.tableInput = window.document.querySelectorAll(this.selectorList.tableInput);
+        }
+        if ((elementName === "buttonAdd") || (elementName === true)) {
+            DOM.buttonAdd = window.document.getElementById(this.selectorList.buttonAdd);
+        }
+        if ((elementName === "buttonRemain") || (elementName === true)) {
+            DOM.buttonRemain = window.document.getElementById(this.selectorList.buttonRemain);
+        }
+        if ((elementName === "buttonDelete") || (elementName === true)) {
+            DOM.buttonDelete = window.document.querySelectorAll(this.selectorList.buttonDelete);
+        }
+        return DOM;
+    }
+    createHTML() {
+        if (this.featuresLength === false) {
+            return false;
+        }
+        const tableBody = this.getDOM("tableBody").tableBody;
+        const template = this.getDOM("tableRow").tableRow[0];
+        let length = this.featuresLength;
+        while (length--) {
+            const copy = template.cloneNode(true);
+            copy.removeAttribute("hidden");
+            tableBody.appendChild(copy);
+        }
+    }
+    uploadFeaturesOfServer(returnAsync) {
+        const body = new FormData();
+        body.append("productId", instances.products.getId());
+        const options = {
+            method: "POST",
+            body: body,
+        };
+        fetch("php/get/features.php", options)
+            .then(response => response.text())
+            .then(text => {
+                console.log(`"${text}"`);
+                const features = JSON.parse(text);
+                if (this.verification(features)) {
+                    this.save(features);
+                    returnAsync();
+                }
+            });
+    }
+    verification(features) {
+        try {
+            let empty = true;
+            for (let key in features) {
+                empty = false;
+                let value = features[key];
+                if ((typeof key !== "string")
+                        || (typeof value !== "string")) {
+                    return false;
+                }
+            }
+            if (empty) {
+                return false;
+            }
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+    save(features) {
+        let length = 0;
+        for (let key in features) {length += 1}
+        if (length === 0) {
+            this.featuresLength = false;
+            this.features = false;
+        } else {
+            this.featuresLength = length;
+            this.features = features;
+        }
+    }
+    insertInHTML() {
+        if (this.featuresLength === false) {
+            return false;
+        }
+        const content = this.getPreparedHtmlContent();
+        console.log(content);
+        for (let tableInput of this.getDOM("tableInput").tableInput) {
+            const contentItem = content.shift();
+            if (contentItem !== false) {
+                tableInput.value = contentItem;
+            }
+        }
+    }
+    getPreparedHtmlContent() {
+        const dataContent = [];
+        dataContent.push(false);
+        dataContent.push(false);
+        for (let key in this.features) {
+            dataContent.push(key);
+            dataContent.push(this.features[key]);
+        }
+        return dataContent;
+    }
+    addBacklightInput(id) {
+        this.getDOM("tableInput").tableInput[id].style.borderColor = this.colorList.active;
+    }
+    removeBacklightInput(id) {
+        this.getDOM("tableInput").tableInput[id].style.borderColor = this.colorList.inactive;
+    }
+    addBacklightDeleteButton(id) {
+        this.getDOM("buttonDelete").buttonDelete[id].style.borderColor = this.colorList.active;
+    }
+    delete(id) {
+        const newFeatures = {};
+        let i = 1;
+        for (let key in this.features) {
+            if (i !== id) {
+                newFeatures[key] = this.features[key];
+            }
+            i++;
+        }
+        this.addBacklightDeleteButton(id);
+        this.uploadToServer(newFeatures, () => {
+            this.setContent();
+        });
+    }
+    edit(absoluteId, id) {
+        this.addBacklightInput(absoluteId);
+        const body = new FormData();
+        body.append("type", "single");
+        body.append("id", id);
+        body.append("features", this.getSingle(id));
+        const options = {
+            method: "POST",
+            body: body,
+        };
+        fetch("php/edit/features.php", options)
+            .then(response => response.text())
+            .then(text => {
+                if (text === "true") {
+                    this.removeBacklightInput(absoluteId);
+                }
+            });
+    }
+    uploadToServer(newFeatures, output) {
+        const body = new FormData();
+        body.append("type", "all");
+        body.append("features", JSON.stringify(newFeatures));
+        const options = {
+            method: "POST",
+            body: body,
+        };
+        fetch("php/edit/features.php", options)
+            .then(response => response.text())
+            .then(text => {
+                if (text === "true") {
+                    output();
+                }
+            });
+    }
+    getSingle(id) {
+        // DEVELOPMENT
+        return {"d": "ds"};
+    }
+}
 const app = {};
 function start() {
     instances.layout = new Layout();
@@ -867,5 +1184,7 @@ function start() {
     instances.products = new Products();
     instances.productsWindow = new ProductsWindow();
     instances.productsWindowFiller = new ProductsWindowFiller();
+    instances.productsWindowFillerUtility = new ProductsWindowFillerUtility();
+    instances.features = new Features();
 }
 window.addEventListener("load", start);

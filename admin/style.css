@@ -410,7 +410,7 @@ h2 {
 .products__table-data {
     font: 1em sans-serif;
     border: 1px solid black;
-    width: calc(100% / 3 - 2em);
+    padding: 1px;
     height: 2em;
 }
 .products__table-data_narrow {
@@ -419,10 +419,21 @@ h2 {
 .products__table-data_dark {
     background-color: #ccc;
 }
+.products__table-input {
+    font: 1em sans-serif;
+    border: 2px solid transparent;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+}
 .products__image {
-    width: 1.5em;
-    height: 1.5em;
-    margin: calc(0.25em - 1px);
+    width: 2em;
+    height: 2em;
+    border: 2px solid transparent;
+    padding: 0.25em;
+    box-sizing: border-box;
     display: block;
 }
 .products__panel-photo {

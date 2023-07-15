@@ -11,6 +11,15 @@ class EditorProducts {
                 (id_parent, id, photos, title, existence, price, description, feature)
                 VALUES (1, $id, '', '', '', '', '', '')");
     }
+    public static function updateTitle($id, $title) {
+        Database::query("UPDATE products SET title = '$title' WHERE id = $id");
+    }
+    public static function updateExistence($id, $existence) {
+        Database::query("UPDATE products SET existence = '$existence' WHERE id = $id");
+    }
+    public static function updatePrice($id, $price) {
+        Database::query("UPDATE products SET price = '$price' WHERE id = $id");
+    }
     public static function findFreeId() {
         $list_products = Database::query("SELECT * FROM products");
         for ($id_free = 1; true; $id_free++) {
