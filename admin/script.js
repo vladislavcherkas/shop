@@ -945,11 +945,17 @@ class Features {
     colorList = {
         active: "#ff9900",
         inactive: "#00000000",
+        darkInactive: "#000",
+    };
+    permit = {
+        setContent: true,
+        add: true,
+        remain: true,
     };
     setEventListeners() {
         const dom = this.getDOM(true);
-        dom.buttonAdd.addEventListener("click", () => {console.log("add")});
-        dom.buttonRemain.addEventListener("click", () => {console.log("remain")});
+        dom.buttonAdd.addEventListener("click", () => this.add());
+        dom.buttonRemain.addEventListener("click", () => this.remain());
         // Buttons for deletion
         let id = 1;
         let rowId = 1;
@@ -978,11 +984,17 @@ class Features {
         }
     }
     setContent() {
+        if (this.permit.setContent === false) {
+            return;
+        } else {
+            this.permit.setContent = false;
+        }
         this.erase();
         this.uploadFeaturesOfServer(() => {
             this.createHTML();
             this.insertInHTML();
             this.setEventListeners();
+            this.permit.setContent = true;
         });
     }
     erase() {
@@ -1047,7 +1059,6 @@ class Features {
         fetch("php/get/features.php", options)
             .then(response => response.text())
             .then(text => {
-                console.log(`"${text}"`);
                 const features = JSON.parse(text);
                 if (this.verification(features)) {
                     this.save(features);
@@ -1090,7 +1101,6 @@ class Features {
             return false;
         }
         const content = this.getPreparedHtmlContent();
-        console.log(content);
         for (let tableInput of this.getDOM("tableInput").tableInput) {
             const contentItem = content.shift();
             if (contentItem !== false) {
@@ -1116,6 +1126,20 @@ class Features {
     }
     addBacklightDeleteButton(id) {
         this.getDOM("buttonDelete").buttonDelete[id].style.borderColor = this.colorList.active;
+    }
+    addBacklightAddButton() {
+        this.getDOM("buttonAdd").buttonAdd.style.borderColor = this.colorList.active;
+    }
+    addBacklightRemainButton() {
+        this.getDOM("buttonRemain").buttonRemain.style.borderColor = this.colorList.active;
+    }
+    removeBacklightAddButton() {
+        this.getDOM("buttonAdd").buttonAdd.style.borderColor = this.colorList.darkInactive;
+    }
+    removeBacklightRemainButton() {
+        const button = this.getDOM("buttonRemain").buttonRemain;
+        button.style.borderColor = this.colorList.darkInactive;
+        //
     }
     delete(id) {
         const newFeatures = {};
@@ -1168,6 +1192,50 @@ class Features {
     getSingle(id) {
         // DEVELOPMENT
         return {"d": "ds"};
+    }
+    add() {
+        if (this.permit.setContent === false) {
+            return;
+        }
+        if (this.permit.add === false) {
+            return;
+        } else {
+            this.permit.add = false;
+        }
+        this.addBacklightAddButton();
+        const body = new FormData();
+        body.append("type", "add");
+        const options = {
+            method: "POST",
+            body: body,
+        };
+        fetch("php/edit/features.php", options)
+            .then(response => response.text())
+            .then(text => {
+                if (text === "true") {
+                    this.removeBacklightAddButton();
+                    this.setContent();
+                }
+                this.permit.add = true;
+            });
+    }
+    remain() {
+        if (this.features === false) {return}
+        this.addBacklightRemainButton();
+        const body = new FormData();
+        body.append("type", "remain");
+        body.append("features", JSON.stringify(this.features));
+        const options = {
+            method: "POST",
+            body: body,
+        };
+        fetch("php/edit/features.php", options)
+            .then(response => response.text())
+            .then(text => {
+                if (text === "true") {
+                    this.removeBacklightRemainButton();
+                }
+            });
     }
 }
 const app = {};
