@@ -20,6 +20,9 @@ class EditorProducts {
     public static function updatePrice($id, $price) {
         Database::query("UPDATE products SET price = '$price' WHERE id = $id");
     }
+    public static function updateFeatures($id, $features) {
+        Database::query("UPDATE products SET features = '$features' WHERE id = $id");
+    }
     public static function findFreeId() {
         $list_products = Database::query("SELECT * FROM products");
         for ($id_free = 1; true; $id_free++) {
@@ -54,6 +57,11 @@ class EditorProducts {
         $string_photos_updated = trim(implode(" ", $array_photos));
         Database::query("UPDATE products SET photos = '$string_photos_updated'
                 WHERE id = $id");
+    }
+    public static function addFeature($id) {
+        $features = json_decode(ReaderProducts::getFeaturesById());
+        $features[""] = "";
+        self::updateFeatures($id, json_encode($features));
     }
     public static function deletePhotoByName($product_id, $name) {
         $photos = ReaderProducts::getParsedPhotosById($product_id);
