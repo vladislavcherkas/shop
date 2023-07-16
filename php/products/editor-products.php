@@ -59,7 +59,7 @@ class EditorProducts {
                 WHERE id = $id");
     }
     public static function addFeature($id) {
-        $features = json_decode(ReaderProducts::getFeaturesById());
+        $features = json_decode(ReaderProducts::getFeaturesById($id));
         $features[""] = "";
         self::updateFeatures($id, json_encode($features));
     }
