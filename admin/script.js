@@ -1051,6 +1051,7 @@ class Features {
     }
     uploadFeaturesOfServer(returnAsync) {
         const body = new FormData();
+        body.append("type", "get");
         body.append("productId", instances.products.getId());
         const options = {
             method: "POST",
@@ -1137,9 +1138,7 @@ class Features {
         this.getDOM("buttonAdd").buttonAdd.style.borderColor = this.colorList.darkInactive;
     }
     removeBacklightRemainButton() {
-        const button = this.getDOM("buttonRemain").buttonRemain;
-        button.style.borderColor = this.colorList.darkInactive;
-        //
+        this.getDOM("buttonRemain").buttonRemain.style.borderColor = this.colorList.darkInactive;
     }
     delete(id) {
         const newFeatures = {};
@@ -1159,6 +1158,7 @@ class Features {
         this.addBacklightInput(absoluteId);
         const body = new FormData();
         body.append("type", "single");
+        body.append("productId", instances.products.getId());
         body.append("id", id);
         body.append("features", this.getSingle(id));
         const options = {
@@ -1176,6 +1176,7 @@ class Features {
     uploadToServer(newFeatures, output) {
         const body = new FormData();
         body.append("type", "all");
+        body.append("productId", instances.products.getId());
         body.append("features", JSON.stringify(newFeatures));
         const options = {
             method: "POST",
@@ -1191,6 +1192,7 @@ class Features {
     }
     getSingle(id) {
         // DEVELOPMENT
+        console.log("DEVELOPMENT");
         return {"d": "ds"};
     }
     add() {
@@ -1205,6 +1207,7 @@ class Features {
         this.addBacklightAddButton();
         const body = new FormData();
         body.append("type", "add");
+        body.append("productId", instances.products.getId());
         const options = {
             method: "POST",
             body: body,
@@ -1212,6 +1215,7 @@ class Features {
         fetch("php/edit/features.php", options)
             .then(response => response.text())
             .then(text => {
+                console.log(text);
                 if (text === "true") {
                     this.removeBacklightAddButton();
                     this.setContent();
@@ -1224,6 +1228,7 @@ class Features {
         this.addBacklightRemainButton();
         const body = new FormData();
         body.append("type", "remain");
+        body.append("productId", instances.products.getId());
         body.append("features", JSON.stringify(this.features));
         const options = {
             method: "POST",
