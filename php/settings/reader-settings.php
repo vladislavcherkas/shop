@@ -15,5 +15,9 @@ class ReaderSettings extends Settings {
         $table = static::$table;
         return static::query("SELECT * FROM $table");
     }
+    public static function get($name_setting) {
+        $table = static::$table;
+        return static::query("SELECT * FROM $table WHERE name_setting = '$name_setting'")[0]["value_setting"];
+    }
 }
 ?>

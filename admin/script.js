@@ -1051,7 +1051,6 @@ class Features {
     }
     uploadFeaturesOfServer(returnAsync) {
         const body = new FormData();
-        body.append("type", "get");
         body.append("productId", instances.products.getId());
         const options = {
             method: "POST",
@@ -1215,7 +1214,6 @@ class Features {
         fetch("php/edit/features.php", options)
             .then(response => response.text())
             .then(text => {
-                console.log(text);
                 if (text === "true") {
                     this.removeBacklightAddButton();
                     this.setContent();

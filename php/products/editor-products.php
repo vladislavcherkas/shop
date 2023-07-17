@@ -1,15 +1,17 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/database/database.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 class EditorProducts {
     public static function delete($id) {
         Database::query("DELETE FROM products WHERE id = $id");
     }
     public static function create() {
         $id = self::findFreeId();
+        $features = ReaderSettings::get("Характеристики по умолчанию");
         Database::query("INSERT INTO products
                 (id_parent, id, photos, title, existence, price, description, feature)
-                VALUES (1, $id, '', '', '', '', '', '')");
+                VALUES (1, $id, '', '', '', '', '', '" . $features . "')");
     }
     public static function updateTitle($id, $title) {
         Database::query("UPDATE products SET title = '$title' WHERE id = $id");
@@ -21,7 +23,7 @@ class EditorProducts {
         Database::query("UPDATE products SET price = '$price' WHERE id = $id");
     }
     public static function updateFeatures($id, $features) {
-        Database::query("UPDATE products SET features = '$features' WHERE id = $id");
+        Database::query("UPDATE products SET feature = '$features' WHERE id = $id");
     }
     public static function findFreeId() {
         $list_products = Database::query("SELECT * FROM products");
@@ -59,9 +61,9 @@ class EditorProducts {
                 WHERE id = $id");
     }
     public static function addFeature($id) {
-        $features = json_decode(ReaderProducts::getFeaturesById($id));
+        $features = json_decode(ReaderProducts::getFeaturesById($id), true);
         $features[""] = "";
-        self::updateFeatures($id, json_encode($features));
+        self::updateFeatures($id, json_encode($features, JSON_UNESCAPED_UNICODE));
     }
     public static function deletePhotoByName($product_id, $name) {
         $photos = ReaderProducts::getParsedPhotosById($product_id);
