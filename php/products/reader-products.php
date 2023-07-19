@@ -19,6 +19,9 @@ class ReaderProducts {
     public static function getPhotosById($id) {
         return self::getById($id)["photos"];
     }
+    public static function getDescriptionById($id) {
+        return self::getById($id)["description"];
+    }
     public static function getFeaturesById($id) {
         return self::getById($id)["feature"];
     }

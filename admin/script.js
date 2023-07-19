@@ -821,7 +821,7 @@ class ProductsWindow {
     requestEditDescription() {
         const body = new FormData();
         body.append("productId", instances.products.data[instances.products.id].id);
-        body.append("description", this.dom.products__textarea.innerHTML);
+        body.append("description", this.dom.products__textarea.value);
         fetch("php/edit/products-description.php", {method: "POST", body: body})
             .then(response => response.text())
             .then(description => {

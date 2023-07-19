@@ -22,6 +22,9 @@ class EditorProducts {
     public static function updatePrice($id, $price) {
         Database::query("UPDATE products SET price = '$price' WHERE id = $id");
     }
+    public static function updateDescription($id, $description) {
+        Database::query("UPDATE products SET description = '$description' WHERE id = $id");
+    }
     public static function updateFeatures($id, $features) {
         if ($features === "{}") {
             $features = ReaderSettings::get("Характеристики по умолчанию");
