@@ -23,6 +23,9 @@ class EditorProducts {
         Database::query("UPDATE products SET price = '$price' WHERE id = $id");
     }
     public static function updateFeatures($id, $features) {
+        if ($features === "{}") {
+            $features = ReaderSettings::get("Характеристики по умолчанию");
+        }
         Database::query("UPDATE products SET feature = '$features' WHERE id = $id");
     }
     public static function findFreeId() {
@@ -64,6 +67,20 @@ class EditorProducts {
         $features = json_decode(ReaderProducts::getFeaturesById($id), true);
         $features[""] = "";
         self::updateFeatures($id, json_encode($features, JSON_UNESCAPED_UNICODE));
+    }
+    public static function editFeature($product_id, $feature_id, $new_feature) {
+        foreach (json_decode($new_feature, true) as $new_feature_key => $new_feature_value) {}
+        $features = json_decode(ReaderProducts::getFeaturesById($product_id), true);
+        $current_id = 1;
+        foreach ($features as $key => $value) {
+            if ($feature_id === $current_id) {
+                $new_features[$new_feature_key] = $new_feature_value;
+            } else {
+                $new_features[$key] = $value;
+            }
+            $current_id++;
+        }
+        self::updateFeatures($product_id, json_encode($new_features, JSON_UNESCAPED_UNICODE));
     }
     public static function deletePhotoByName($product_id, $name) {
         $photos = ReaderProducts::getParsedPhotosById($product_id);

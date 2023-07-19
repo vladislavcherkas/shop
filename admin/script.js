@@ -613,6 +613,7 @@ class ProductsWindow {
             products__signature: window.document.querySelectorAll(".products__signature"),
             products__select: window.document.querySelector(".products__select"),
             products__input: window.document.querySelectorAll(".products__input"),
+            products__textarea: window.document.querySelector(".products__textarea"),
             products__inputPhotos: window.document.querySelector(".products__input-photos"),
         }
         this.dom.products__button[0].addEventListener("click", () => this.close());
@@ -625,6 +626,8 @@ class ProductsWindow {
         this.dom.products__select.addEventListener("change", () => this.requestEditSelect());
         this.dom.products__input[1].addEventListener("input", () => this.addBacklightPriceInput());
         this.dom.products__input[1].addEventListener("change", () => this.requestEditPrice());
+        this.dom.products__textarea.addEventListener("input", () => this.addBacklightDescriptionInput());
+        this.dom.products__textarea.addEventListener("change", () => this.requestEditDescription());
     }
     open() {
         this.dom.products__window.style.zIndex = 0;
@@ -815,6 +818,18 @@ class ProductsWindow {
                 }
             });
     }
+    requestEditDescription() {
+        const body = new FormData();
+        body.append("productId", instances.products.data[instances.products.id].id);
+        body.append("description", this.dom.products__textarea.innerHTML);
+        fetch("php/edit/products-description.php", {method: "POST", body: body})
+            .then(response => response.text())
+            .then(description => {
+                if (this.dom.products__textarea.value === description) {
+                    this.removeBacklightDescriptionInput();
+                }
+            });
+    }
     addBacklightTitleInput() {
         this.dom.products__signature[0].style.color = "#ff9900";
         this.dom.products__input[0].style.borderColor = "#ff9900";
@@ -826,6 +841,10 @@ class ProductsWindow {
         this.dom.products__signature[1].style.color = "#ff9900";
         this.dom.products__input[1].style.borderColor = "#ff9900";
     }
+    addBacklightDescriptionInput() {
+        this.dom.products__signature[2].style.color = "#ff9900";
+        this.dom.products__textarea.style.borderColor = "#ff9900";
+    }
     removeBacklightTitleInput() {
         this.dom.products__signature[0].style.color = "#1a73e8";
         this.dom.products__input[0].style.borderColor = "#1a73e8";
@@ -836,6 +855,10 @@ class ProductsWindow {
     removeBacklightPriceInput() {
         this.dom.products__signature[1].style.color = "#1a73e8";
         this.dom.products__input[1].style.borderColor = "#1a73e8";
+    }
+    removeBacklightDescriptionInput() {
+        this.dom.products__signature[2].style.color = "#1a73e8";
+        this.dom.products__textarea.style.borderColor = "#1a73e8";
     }
     deleteAllButtonsOnPhoto() {
         const panels = window.document.querySelectorAll(".products__panel-photo");
@@ -875,6 +898,7 @@ class ProductsWindowFiller extends ProductsWindowFillerUtility {
         this.existence(data.existence);
         this.price(data.price);
         this.description(data.description);
+        this.features();
         this.photos(data.photos);
     }
     title(title) {
@@ -895,6 +919,9 @@ class ProductsWindowFiller extends ProductsWindowFillerUtility {
     }
     description(description) {
         this.dom.products__textarea.value = description;
+    }
+    features() {
+        instances.features.setContent();
     }
     photos(data) {
         this.deleteAllPhotos();
@@ -1159,7 +1186,7 @@ class Features {
         body.append("type", "single");
         body.append("productId", instances.products.getId());
         body.append("id", id);
-        body.append("features", this.getSingle(id));
+        body.append("feature", this.getSingle(id));
         const options = {
             method: "POST",
             body: body,
@@ -1190,9 +1217,25 @@ class Features {
             });
     }
     getSingle(id) {
-        // DEVELOPMENT
-        console.log("DEVELOPMENT");
-        return {"d": "ds"};
+        let currentId = 1;
+        for (let input of this.getDOM("tableInput").tableInput) {
+            if (currentId === id) {
+                if (currentId % 2 === 0) {
+                    const key = this.getInputDOMById(currentId - 1).value;
+                    const value = this.getInputDOMById(currentId).value;
+                    return `{"${key}":"${value}"}`;
+                } else {
+                    const key = this.getInputDOMById(currentId).value;
+                    const value = this.getInputDOMById(currentId + 1).value;
+                    return `{"${key}":"${value}"}`;
+                }
+            }
+            currentId++;
+        }
+        return "false";
+    }
+    getInputDOMById(id) {
+        return this.getDOM("tableInput").tableInput[id + 1];
     }
     add() {
         if (this.permit.setContent === false) {
