@@ -825,7 +825,6 @@ class ProductsWindow {
         fetch("php/edit/products-description.php", {method: "POST", body: body})
             .then(response => response.text())
             .then(description => {
-                console.log(`"${description}"`);
                 if (description === "true") {
                     this.removeBacklightDescriptionInput();
                 }
