@@ -43,7 +43,23 @@ if (count($products) > 12) {
                         <?php echo $product["title"] ?>
                     </div>
                     <div class="products__existence">
-                        <?php echo $product["existence"] ?>
+                        <?php
+                        if ($product["existence"] === "1") {
+                            echo '<span style="color: green">В наявності</span>';
+                        }
+                        if ($product["existence"] === "2") {
+                            echo '<span style="color: gray">Немає в наявності</span>';
+                        }
+                        if ($product["existence"] === "3") {
+                            echo '<span style="color: blue">Під замовлення</span>';
+                        }
+                        if ($product["existence"] === "4") {
+                            echo '<span style="color: gray">Невідомо</span>';
+                        }
+                        if ($product["existence"] === "5") {
+                            echo '<span style="color: red">Ошибка</span>';
+                        }
+                        ?>
                     </div>
                     <div class="products__price">
                         <?php echo $product["price"] ?>
