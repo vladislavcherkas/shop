@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 ?>
 
 <!DOCTYPE html>
@@ -28,49 +29,49 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
             <h3 class="article__subtitle">Телефони</h3>
             <p class="article__p">
                 <img src="/images/telephone.png" width="20" height="20">
-                <span>+380 97 176 62 57</span>
+                <span><?php echo ReaderSettings::get("Номер телефона") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Адреса</h3>
             <p class="article__p">
                 <img src="/images/address.png" width="20" height="20">
-                <span>Полтава, Кременчук</span>
+                <span><?php echo ReaderSettings::get("Адрес") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Назва</h3>
             <p class="article__p">
                 <img src="/images/instagram_black.png" width="20" height="20">
-                <span>textile_cutefoxi</span>
+                <span><?php echo ReaderSettings::get("Название") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Контактна особа</h3>
             <p class="article__p">
                 <img src="/images/people.png" width="20" height="20">
-                <span>Вікторія</span>
+                <span><?php echo ReaderSettings::get("Контактное лицо") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Email</h3>
             <p class="article__p">
                 <img src="/images/email.png" width="20" height="20">
-                <span><span style="background-color: red; color: red;">email</span></span>
+                <span><?php echo ReaderSettings::get("Email") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Telegram</h3>
             <p class="article__p">
                 <img src="/images/telegram_black.png" width="20" height="20">
-                <span>cutefoxi</span>
+                <span><?php echo ReaderSettings::get("Telegram") ?></span>
             </p>
         </div>
         <div class="article__body">
             <h3 class="article__subtitle">Viber</h3>
             <p class="article__p">
                 <img src="/images/viber_black.png" width="20" height="20">
-                <span>+380 97 176 62 57</span>
+                <span><?php echo ReaderSettings::get("Viber") ?></span>
             </p>
         </div>
     </div>

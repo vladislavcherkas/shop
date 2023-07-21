@@ -47,8 +47,8 @@ class Gallery extends Buttons {
         if (this.scrollY > (this.scrollHeight - 250)) {
             this.scrollY -= 250;
         } else {
-                this.scroll(0, scrollY);
-            }
+            this.scroll(0, scrollY);
+        }
         this.backlightButtons();
     }
     scrollLeft() {

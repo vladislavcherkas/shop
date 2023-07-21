@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,13 +24,13 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
         <div class="call__title">Дзвінок адміністратору</div>
         <div class="call__body">
             <div class="call__description">
-                Наш графік роботи з 8:00 до 20:00 з понеділка по п'ятніцю.
+                <?php echo ReaderSettings::get("Дзвінок адміністратору") ?>
                 <a class="call__schedule" href="/about/?path-past=/call#schedule">
                     <br>Повний графік роботи
                 </a>
             </div>
-            <a href="tel:380971766257">
-                <div class="call__button">+380 97 191 85 04</div>
+            <a href="tel:<?php echo ReaderSettings::get("Номер телефона") ?>">
+                <div class="call__button"><?php echo ReaderSettings::get("Номер телефона") ?></div>
             </a>
             <a href="https://t.me/cutefoxi">
                 <div class="call__button call__button_icon">

@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 $products = array_reverse(ReaderProducts::getAll());
 if (count($products) > 12) {
     $products = array_slice($products, 0, 12);
@@ -17,10 +18,8 @@ if (count($products) > 12) {
 </head>
 <body>
     <div class="header">
-        <div class="header__title">Ми працюємо з 8:00 до 20:00</div>
-        <div class="header__subtitle">
-            Багаторазові пелюшки виготовлені із якісних матеріалів, повністю непромокаємі
-        </div>
+        <div class="header__title"><?php echo ReaderSettings::get("Шапка текст 1") ?></div>
+        <div class="header__subtitle"><?php echo ReaderSettings::get("Шапка текст 2") ?></div>
         <div class="header__bar">
             <a class="header__item" href="/menu/?path-past=/"><img src="/images/menu.png" width="25" height="25">
             </a>
@@ -36,37 +35,39 @@ if (count($products) > 12) {
         <div class="products__list">
             <?php foreach ($products as $product): ?>
                 <div class="products__item">
-                    <div class="products__photo">
-                        <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                    <div class="products__wrap">
+                        <div class="products__photo">
+                            <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                        </div>
+                        <div class="products__title">
+                            <?php echo $product["title"] ?>
+                        </div>
+                        <div class="products__existence">
+                            <?php
+                            if ($product["existence"] === "1") {
+                                echo '<span style="color: green">В наявності</span>';
+                            }
+                            if ($product["existence"] === "2") {
+                                echo '<span style="color: gray">Немає в наявності</span>';
+                            }
+                            if ($product["existence"] === "3") {
+                                echo '<span style="color: blue">Під замовлення</span>';
+                            }
+                            if ($product["existence"] === "4") {
+                                echo '<span style="color: gray">Невідомо</span>';
+                            }
+                            if ($product["existence"] === "5") {
+                                echo '<span style="color: red">Ошибка</span>';
+                            }
+                            ?>
+                        </div>
+                        <div class="products__price">
+                            <?php echo $product["price"] ?>
+                        </div>
+                        <a href="/product?id=<?php echo $product["id"] ?>&path-past=/">
+                            <div class="products__open">Переглянути</div>
+                        </a>
                     </div>
-                    <div class="products__title">
-                        <?php echo $product["title"] ?>
-                    </div>
-                    <div class="products__existence">
-                        <?php
-                        if ($product["existence"] === "1") {
-                            echo '<span style="color: green">В наявності</span>';
-                        }
-                        if ($product["existence"] === "2") {
-                            echo '<span style="color: gray">Немає в наявності</span>';
-                        }
-                        if ($product["existence"] === "3") {
-                            echo '<span style="color: blue">Під замовлення</span>';
-                        }
-                        if ($product["existence"] === "4") {
-                            echo '<span style="color: gray">Невідомо</span>';
-                        }
-                        if ($product["existence"] === "5") {
-                            echo '<span style="color: red">Ошибка</span>';
-                        }
-                        ?>
-                    </div>
-                    <div class="products__price">
-                        <?php echo $product["price"] ?>
-                    </div>
-                    <a href="/product?id=<?php echo $product["id"] ?>&path-past=/">
-                        <div class="products__open">Переглянути</div>
-                    </a>
                 </div>
             <?php endforeach ?>
         </div>

@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
         <div class="article__title">Про нас</div>
         <div class="article__body">
             <div class="article__description">
-                
+                <?php echo ReaderSettings::get("Про нас") ?>
             </div>
         </div>
     </div>
@@ -89,11 +90,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
         <div class="article__body">
             <div class="article__wrap">
                 <ul class="article__list">
-                    <li>Час роботи</li>
-                    <li>Час роботи</li>
-                    <li>Час роботи</li>
+                    <?php foreach (array_diff(explode("|", ReaderSettings::get("Що у асортименті")), ["", " "]) as $item): ?>
+                        <li><?php echo $item ?></li>
+                    <?php endforeach ?>
                 </ul>
-                <a href="/categories">
+                <a href="/categories/index.php?path-past=/about">
                     <div class="menu__button menu__button_icon">
                         <img src="/images/products_white.png" class="footer__contact" width="25" height="25">
                         <span>Категорiї товарiв</span>

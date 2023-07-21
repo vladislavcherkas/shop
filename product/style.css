@@ -43,6 +43,12 @@ section>table>tbody>tr>td {
 section>table>tbody>tr>td:last-child {
     font-weight: bold;
 }
+pre {
+    white-space: break-spaces;
+    font: normal 1em sans-serif;
+    width: 100%;
+    margin: 0;
+}
 
 /* Header */
 .header {
@@ -121,6 +127,11 @@ section>table>tbody>tr>td:last-child {
 @media (min-width: 400px) {
     .gallery__item>img {
         width: 80%;
+    }
+}
+@media (min-width: 600px) {
+    .gallery__item>img {
+        width: 450px;
     }
 }
 

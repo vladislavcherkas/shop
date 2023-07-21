@@ -1,5 +1,8 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
+$product = ReaderProducts::getById($_GET["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -37,66 +40,65 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
             <img src="/images/right_black.png"  width="15" height="15">
         </div>
         <div class="gallery__wrap">
-            <div class="gallery__item">
-                <img src="/images/example.png">
-            </div>
-            <div class="gallery__item">
-                <img src="/images/example1.png">
-            </div>
-            <div class="gallery__item">
-                <img src="/images/example2.png">
-            </div>
-            <div class="gallery__item">
-                <img src="/images/example3.png">
-            </div>
+            <?php foreach (ReaderProducts::parsePhotos($product["photos"]) as $photo): ?>
+                <div class="gallery__item">
+                    <img src="/images/products/<?php echo $photo ?>">
+                </div>
+            <?php endforeach ?>
         </div>
     </div>
     <div class="common">
-        <div class="common__title">Пелюшка 70 х 100 см</div>
-        <div class="common__existence">В наявності</div>
-        <div class="common__price">340 грн</div>
-        <div class="common__wholesale">Оптова ціна -10% від 10 одиниць</div>
+        <div class="common__title"><?php echo $product["title"] ?></div>
+        <div class="common__existence">
+            <?php
+            if ($product["existence"] === "1") {
+                echo '<span style="color: green">В наявності</span>';
+            }
+            if ($product["existence"] === "2") {
+                echo '<span style="color: gray">Немає в наявності</span>';
+            }
+            if ($product["existence"] === "3") {
+                echo '<span style="color: blue">Під замовлення</span>';
+            }
+            if ($product["existence"] === "4") {
+                echo '<span style="color: gray">Невідомо</span>';
+            }
+            if ($product["existence"] === "5") {
+                echo '<span style="color: red">Ошибка</span>';
+            }
+            ?>
+        </div>
+        <div class="common__price"><?php echo $product["price"] ?></div>
+        <div class="common__wholesale"><?php echo ReaderSettings::get("Текст под ценой товара") ?></div>
         <div class="common__contacts">
-            <a href="tel:380971918504">+380 97 191 85 04</a>
-            <span>(Viber)</span>
-            <a href="https://t.me/cutefoxi">(Telegram)</a>
+            <a href="tel:<?php echo ReaderSettings::get("Номер телефона") ?>"><?php echo ReaderSettings::get("Номер телефона") ?></a>
+            <a href="tel:<?php echo ReaderSettings::get("Номер телефона") ?>">Viber</a>
+            <a href="<?php echo ReaderSettings::get("Ссылка на Telegram администратора") ?>">Telegram</a>
         </div>
     </div>
     <article>
         <section>
             <h2>Опис</h2>
-            <p>Короткий опис тут
-                <br><br>
-<strong>Приклад</strong><br>
-<em>Приклад 2</em><br>
-Звичайний текст<br>
-Ще більше тексту<br>
-<br><br>
-<strong>Приклад</strong><br>
-<em>Приклад 2</em><br>
-Звичайний текст<br>
-Ще більше тексту</p>
+            <pre><?php echo $product["description"] ?></pre>
         </section>
         <section>
             <h2>Характеристики</h2>
             <table>
                 <tbody>
-                    <tr>
-                        <td>Призначення</td>
-                        <td>Все</td>
-                    </tr>
-                    <tr>
-                        <td>Тканина</td>
-                        <td>Бавовна</td>
-                    </tr>
-                    <tr>
-                        <td>Призначення</td>
-                        <td>Все</td>
-                    </tr>
-                    <tr>
-                        <td>Тканина</td>
-                        <td>Бавовна</td>
-                    </tr>
+                    <?php foreach (json_decode($product["feature"], true) as $key => $value): ?>
+                        <?php
+                            if ($key === "") {
+                                $key = "?";
+                            }
+                            if ($value === "") {
+                                $value = "?";
+                            }
+                        ?>
+                        <tr>
+                            <td><?php echo $key ?></td>
+                            <td><?php echo $value ?></td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </section>
@@ -131,7 +133,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
         </section>
         <section>
             <h2>Умови повернення</h2>
-            <p>Повернення товару впродовж 14 днів за рахунок покупця</p>
+            <p><?php echo ReaderSettings::get("Условия возврата") ?></p>
         </section>
     </article>
     <div class="footer">
