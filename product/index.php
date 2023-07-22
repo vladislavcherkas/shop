@@ -24,7 +24,17 @@ $product = ReaderProducts::getById($_GET["id"]);
             <a class="header__item" href="/">
                 <img src="/images/home_white.png" width="25" height="25">
             </a>
-            <a class="header__item" href="/call?path-past=/product/?id=<?php echo $_GET["id"]?>">
+            <?php
+            $productId = $_GET['id'];
+            if (isset($_GET['categoryId'])) {
+                $categoryId = $_GET['categoryId'];
+                $pastPath = urlencode("/product/index.php?id=$productId&path-past=/categories/index.php?id=$categoryId&categoryId=$categoryId");
+            } else {
+                $pastPath = urlencode("/product/index.php?id=$productId");
+            }
+            $callLink = "/call/index.php?path-past=$pastPath";
+            ?>
+            <a class="header__item" href="<?php echo $callLink ?>">
                 <img src="/images/call.png" width="25" height="25">
             </a>
         </div>

@@ -5,6 +5,11 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/categories/reader-categories-for-
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/categories/reader-categories-root.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/navigation/path-past.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
+if(isset($_GET["id"])) {
+    $backLink = "/categories";
+} else {
+    $backLink = "/menu/index.php?path-past=/categories";
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
 <body>
     <div class="header">
         <div class="header__bar">
-            <a class="header__item" href="<?php echo PathPast::get() ?>">
+            <a class="header__item" href="<?php echo $backLink ?>">
                 <img src="/images/back.png" width="25" height="25">
             </a>
             <a class="header__item" href="/">
@@ -53,7 +58,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
             </div>
             <div class="categories__list">
                 <?php foreach (ReaderCategoriesForProducts::getByIdParent($_GET["id"]) as $category): ?>
-                    <a class="categories__button categories__button_transparent"
+                    <a class="categories__button"
                             href="?id=<?php echo $category["id"] ?>&path-past=<?php echo PathPast::get() ?>">
                         <?php echo $category["title"] ?>
                     </a>
@@ -68,13 +73,33 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/products/reader-products.php");
         </div>
         <div class="products">
             <?php foreach (Categories::getProductsByIdParent($_GET["id"]) as $product): ?>
-                <a class="products__item" href="/product/?id=<?php echo $product["id"] ?>&path-past=/categories/?id=<?php echo $_GET["id"] ?>">
-                    <div class="products__photo">
-                        <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                <a class="products__item" href="/product/?id=<?php echo $product["id"] ?>&path-past=/categories/?id=<?php echo $_GET["id"] ?>&categoryId=<?php echo $_GET["id"] ?>">
+                    <div class="products__wrap">
+                        <div class="products__photo">
+                            <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                        </div>
+                        <div class="products__title"><?php echo $product["title"] ?></div>
+                        <div class="products__existence">
+                            <?php
+                                if ($product["existence"] === "1") {
+                                    echo '<span style="color: green">В наявності</span>';
+                                }
+                                if ($product["existence"] === "2") {
+                                    echo '<span style="color: gray">Немає в наявності</span>';
+                                }
+                                if ($product["existence"] === "3") {
+                                    echo '<span style="color: blue">Під замовлення</span>';
+                                }
+                                if ($product["existence"] === "4") {
+                                    echo '<span style="color: gray">Невідомо</span>';
+                                }
+                                if ($product["existence"] === "5") {
+                                    echo '<span style="color: red">Ошибка</span>';
+                                }
+                            ?>
+                        </div>
+                        <div class="products__price"><?php echo $product["price"] ?></div>
                     </div>
-                    <div class="products__title"><?php echo $product["title"] ?></div>
-                    <div class="products__existence"><?php echo $product["existence"] ?></div>
-                    <div class="products__price"><?php echo $product["price"] ?></div>
                 </a>
             <?php endforeach ?>
         </div>

@@ -15,7 +15,15 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/php/settings/reader-settings.php");
 <body>
     <div class="header">
         <div class="header__bar">
-            <a class="header__item" href="<?php echo PathPast::get() ?>">
+            <?php
+            if (isset($_GET['categoryId'])) {
+                $categoryId = $_GET['categoryId'];
+                $callLink = PathPast::get() . "&categoryId=$categoryId";
+            } else {
+                $callLink = PathPast::get();
+            }
+            ?>
+            <a class="header__item" href="<?php echo $callLink ?>">
                 <img src="/images/back.png" width="25" height="25">
             </a>
         </div>
