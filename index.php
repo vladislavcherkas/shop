@@ -36,39 +36,39 @@ if (count($products) > 12) {
             <?php foreach ($products as $product): ?>
                 <div class="products__item">
                     <div class="products__wrap">
-                        <div class="products__photo">
-                            <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                            <a class="products__link" href="/product?id=<?php echo $product["id"] ?>&path-past=/">
+                                <div class="products__photo">
+                                    <img src="/images/products/<?php echo ReaderProducts::parsePhotos($product["photos"])[0] ?>">
+                                </div>
+                                <div class="products__title">
+                                    <?php echo $product["title"] ?>
+                                </div>
+                                <div class="products__existence">
+                                    <?php
+                                    if ($product["existence"] === "1") {
+                                        echo '<span style="color: green">В наявності</span>';
+                                    }
+                                    if ($product["existence"] === "2") {
+                                        echo '<span style="color: gray">Немає в наявності</span>';
+                                    }
+                                    if ($product["existence"] === "3") {
+                                        echo '<span style="color: blue">Під замовлення</span>';
+                                    }
+                                    if ($product["existence"] === "4") {
+                                        echo '<span style="color: gray">Невідомо</span>';
+                                    }
+                                    if ($product["existence"] === "5") {
+                                        echo '<span style="color: red">Ошибка</span>';
+                                    }
+                                    ?>
+                                </div>
+                                <div class="products__price">
+                                    <?php echo $product["price"] ?>
+                                </div>
+                            </a>
+                            <div class="products__open">У кошик</div>
                         </div>
-                        <div class="products__title">
-                            <?php echo $product["title"] ?>
-                        </div>
-                        <div class="products__existence">
-                            <?php
-                            if ($product["existence"] === "1") {
-                                echo '<span style="color: green">В наявності</span>';
-                            }
-                            if ($product["existence"] === "2") {
-                                echo '<span style="color: gray">Немає в наявності</span>';
-                            }
-                            if ($product["existence"] === "3") {
-                                echo '<span style="color: blue">Під замовлення</span>';
-                            }
-                            if ($product["existence"] === "4") {
-                                echo '<span style="color: gray">Невідомо</span>';
-                            }
-                            if ($product["existence"] === "5") {
-                                echo '<span style="color: red">Ошибка</span>';
-                            }
-                            ?>
-                        </div>
-                        <div class="products__price">
-                            <?php echo $product["price"] ?>
-                        </div>
-                        <a href="/product?id=<?php echo $product["id"] ?>&path-past=/">
-                            <div class="products__open">Переглянути</div>
-                        </a>
                     </div>
-                </div>
             <?php endforeach ?>
         </div>
     </div>

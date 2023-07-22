@@ -61,6 +61,9 @@ a {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+.products__link {
+    color: inherit;
+}
 .products__item {
     width: 45vw;
     margin: 10px 0 0 0;
