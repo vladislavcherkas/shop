@@ -1,3 +1,7 @@
+class Document {
+    disableScroll() {}
+    enableScroll() {}
+}
 class BasketApp {
     functionBeforeStart = false;
     functionBeforeStop = false;
@@ -11,7 +15,7 @@ class BasketApp {
 const script = {};
 function start() {
     script.basketApp = new BasketApp();
-    script.functionBeforeStart = false;
-    script.functionBeforeStop = false;
+    script.functionBeforeStart = disableScroll();
+    script.functionBeforeStop = enableScroll();
 }
 window.addEventListener("load", start);

@@ -15,7 +15,7 @@ if (count($products) > 12) {
     <title>Пелюшки</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="basket-app/style.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="header">
@@ -117,6 +117,5 @@ if (count($products) > 12) {
     <div class="basket-app">
         <div class="basket-app__body">Some text</div>
     </div>
-    <script src="basket-app/script.js"></script>
 </body>
 </html>
