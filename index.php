@@ -111,5 +111,6 @@ if (count($products) > 12) {
             </a>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
