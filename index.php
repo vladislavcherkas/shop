@@ -15,6 +15,7 @@ if (count($products) > 12) {
     <title>Пелюшки</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="basket-app/style.css">
 </head>
 <body>
     <div class="header">
@@ -111,7 +112,11 @@ if (count($products) > 12) {
             </a>
         </div>
     </div>
-    <?php require($_SERVER['DOCUMENT_ROOT'] . '/basket-app/template.php') ?>
-    <script src="script.js"></script>
+
+    <!-- Basket app -->
+    <div class="basket-app">
+        <div class="basket-app__body">Some text</div>
+    </div>
+    <script src="basket-app/script.js"></script>
 </body>
 </html>
