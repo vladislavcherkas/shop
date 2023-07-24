@@ -49,6 +49,7 @@ a {
     padding: 5px 10px;
     border-radius: 8px;
     color: #000;
+    transition: all 0.2s;
 }
 .products__name>a:hover,
 .products__name>a:active {
@@ -72,6 +73,11 @@ a {
     border-radius: 8px;
     padding: 0 0 5px 0;
     background-color: #fff;
+    box-shadow: none;
+    transition: box-shadow 0.2s;
+}
+.products__wrap:hover {
+    box-shadow: 0 0 10px 0 #0005;
 }
 .products__photo {
     border-bottom: 1px solid black;
@@ -107,6 +113,10 @@ a {
     text-align: center;
     padding: 10px 0;
     background-color: #72aa70;
+    transition: background-color 0.2s;
+}
+.products__open:hover {
+    background-color: #528850;
 }
 @media (min-width: 600px) {
     .products__item {

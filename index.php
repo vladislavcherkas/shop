@@ -66,7 +66,7 @@ if (count($products) > 12) {
                                     <?php echo $product["price"] ?>
                                 </div>
                             </a>
-                            <div class="products__open">У кошик</div>
+                            <div class="products__open">Купити</div>
                         </div>
                     </div>
             <?php endforeach ?>
