@@ -111,6 +111,7 @@ if (count($products) > 12) {
             </a>
         </div>
     </div>
+    <?php require($_SERVER['DOCUMENT_ROOT'] . '/basket-app/template.php') ?>
     <script src="script.js"></script>
 </body>
 </html>
