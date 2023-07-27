@@ -115,7 +115,85 @@ if (count($products) > 12) {
 
     <!-- Basket app -->
     <div class="basket-app">
-        <div class="basket-app__body">Some text</div>
+        <div class="basket-app__body">
+            <div class="basket-app__notification">Зараз у компанії неробочий час. Ваше замовлення буде оброблено з 09:00 найближчого робочого дня (завтра, 27.07)</div>
+            <div class="basket-app__screen">
+                <div class="basket-app__product-list">
+                    <div class="basket-app__product">
+                        <div class="basket-app__photo">
+                            <img src="/images/products/1.jpeg">
+                        </div>
+                        <div class="basket-app__data">
+                            <div class="basket-app__name">Новый товар больше не нужен из-за чрезмерно длинного заголовка</div>
+                            <div class="basket-app__existence">В наявності</div>
+                            <div class="basket-app__price">300 грн</div>
+                        </div>
+                        <div class="basket-app__total-alone">947 грн</div>
+                        <div class="basket-app__amount-bar">
+                            <img class="basket-app__amount-button" src="/images/minus.png" width="15" height="15">
+                            <div class="basket-app__amount">3</div>
+                            <img class="basket-app__amount-button" src="/images/plus.png" width="15" height="15">
+                        </div>
+                        <img class="basket-app__delete-button" src="/images/delete_black.png" width="20" height="20">
+                    </div>
+                    <div class="basket-app__product">
+                        <div class="basket-app__photo">
+                            <img src="/images/products/1.jpeg">
+                        </div>
+                        <div class="basket-app__data">
+                            <div class="basket-app__name">Новый товар больше не нужен из-за чрезмерно длинного заголовка</div>
+                            <div class="basket-app__existence">В наявності</div>
+                            <div class="basket-app__price">300 грн</div>
+                        </div>
+                        <div class="basket-app__total-alone">947 грн</div>
+                        <div class="basket-app__amount-bar">
+                            <img class="basket-app__amount-button" src="/images/minus.png" width="15" height="15">
+                            <div class="basket-app__amount">3</div>
+                            <img class="basket-app__amount-button" src="/images/plus.png" width="15" height="15">
+                        </div>
+                        <img class="basket-app__delete-button" src="/images/delete_black.png" width="20" height="20">
+                    </div>
+                    <div class="basket-app__product">
+                        <div class="basket-app__photo">
+                            <img src="/images/products/1.jpeg">
+                        </div>
+                        <div class="basket-app__data">
+                            <div class="basket-app__name">Новый товар больше не нужен из-за чрезмерно длинного заголовка</div>
+                            <div class="basket-app__existence">В наявності</div>
+                            <div class="basket-app__price">300 грн</div>
+                        </div>
+                        <div class="basket-app__total-alone">947 грн</div>
+                        <div class="basket-app__amount-bar">
+                            <img class="basket-app__amount-button" src="/images/minus.png" width="15" height="15">
+                            <div class="basket-app__amount">3</div>
+                            <img class="basket-app__amount-button" src="/images/plus.png" width="15" height="15">
+                        </div>
+                        <img class="basket-app__delete-button" src="/images/delete_black.png" width="20" height="20">
+                    </div>
+                    <div class="basket-app__product">
+                        <div class="basket-app__photo">
+                            <img src="/images/products/1.jpeg">
+                        </div>
+                        <div class="basket-app__data">
+                            <div class="basket-app__name">Новый товар больше не нужен из-за чрезмерно длинного заголовка</div>
+                            <div class="basket-app__existence">В наявності</div>
+                            <div class="basket-app__price">300 грн</div>
+                        </div>
+                        <div class="basket-app__total-alone">947 грн</div>
+                        <div class="basket-app__amount-bar">
+                            <img class="basket-app__amount-button" src="/images/minus.png" width="15" height="15">
+                            <div class="basket-app__amount">3</div>
+                            <img class="basket-app__amount-button" src="/images/plus.png" width="15" height="15">
+                        </div>
+                        <img class="basket-app__delete-button" src="/images/delete_black.png" width="20" height="20">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="basket-app__header">
+            <img class="basket-app__close" src="/images/back.png" width="25" height="25">
+            <div class="basket-app__title">Кошик</div>
+        </div>
     </div>
 </body>
 </html>
