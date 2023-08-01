@@ -206,7 +206,10 @@ a {
     border: 1px solid yellow;
     border-radius: 8px;
     padding: 5px;
-    margin: 5px;
+    margin: 5px 5px 0;
+}
+.basket-app__screen {
+    overflow-y: hidden;
 }
 .basket-app__product {
     position: relative;
@@ -275,4 +278,239 @@ a {
     position: absolute;
     top: 5px;
     right: 5px;
+}
+.basket-app__resume-wrap {
+    background-color: #fff;
+    padding: 5px;
+    margin: 10px 5px 5px;
+    border-radius: 8px;
+}
+.basket-app__resume {
+    font: bold 1em sans-serif;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 3em;
+}
+.basket-app__resume>span {
+    font: bold 1.3em sans-serif;
+    line-height: 3em;
+}
+.basket-app__continue-button {
+    font: bold 1em sans-serif;
+    line-height: 2.5em;
+    text-align: center;
+    margin: 5px 10px 10px;
+    border-radius: 8px;
+    border: 1px solid #72aa70;
+    color: #72aa70;
+}
+.basket-app__continue-button_dark {
+    background-color: #72aa70;
+    color: white;
+}
+.basket-app__subtitle {
+    font: bold 1.2em sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+.basket-app__subtitle>span {
+    font: 0.9em sans-serif;
+    color: gray;
+}
+.basket-app__field {
+    position: relative;
+    margin: 10px;
+}
+.basket-app__field-signature {
+    font: normal 0.9em sans-serif;
+    color: #1a73e8;
+    position: absolute;
+    top: -2px;
+    left: 10px;
+    padding: 0 3px;
+    background-color: #fff;
+}
+.basket-app__field-input {
+    font: normal 1em sans-serif;
+    line-height: 2em;
+    border-radius: 8px;
+    border: 1px solid #1a73e8;
+    padding: 0 5px;
+    margin: 5px 0 0 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.basket-app__block {
+    padding: 5px;
+    margin: 5px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.basket-app__comment {
+    position: relative;
+}
+.basket-app__comment-signature {
+    font: bold 1em sans-serif;
+    line-height: 3em;
+    margin: 0 10px;
+}
+.basket-app__comment-show {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    width: 3em;
+}
+.basket-app__comment-body {
+    overflow-y: hidden;
+}
+.basket-app__comment-field {
+    margin: 10px 10px 0;
+}
+.basket-app__comment-field>textarea {
+    font: 1em sans-serif;
+    display: block;
+    resize: none;
+    width: 100%;
+    line-height: 1.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.basket-app__comment-field>textarea:focus {
+    outline: none;
+}
+.basket-app__comment-limitation {
+    font: 0.9em sans-serif;
+    color: gray;
+    margin: 5px 10px 0;
+}
+.basket-app__comment-button {
+    margin: 20px 10px 10px;
+}
+.basket-app__payment-head {
+    font: 1em sans-serif;
+    overflow-y: hidden;
+}
+.basket-app__payment-head>div {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+.basket-app__payment-head>div>img {
+    background-color: green;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    margin: 5px 15px 5px 5px;
+    box-sizing: border-box;
+}
+.basket-app__payment-body {
+    overflow-y: hidden;
+}
+.basket-app__payment-body>label {
+    font: 1em sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+.basket-app__payment-body>label>input {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    margin: 5px 15px 5px 5px;
+    appearance: none;
+    border-radius: 50%;
+    border: 1px solid #72aa70;
+    transition: border 0.2s;
+}
+.basket-app__payment-body>label>input:checked {
+    border: 6px solid #72aa70;
+}
+.basket-app__delivery-head {
+    font: 1em sans-serif;
+    overflow-y: hidden;
+    margin: 0 5px;
+    border-radius: 8px;
+    background-color: white;
+}
+.basket-app__delivery-head>div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+.basket-app__delivery-head>div>img {
+    background-color: green;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    margin: 5px 15px 5px 5px;
+    box-sizing: border-box;
+}
+.basket-app__delivery-method {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    background-color: white;
+}
+.basket-app__delivery-method>label {
+    font: 1em sans-serif;
+    display: flex;
+    align-items: center;
+}
+.basket-app__delivery-method>label>input {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    margin: 5px 15px 5px 5px;
+    appearance: none;
+    border-radius: 50%;
+    border: 1px solid #72aa70;
+    transition: border 0.2s;
+}
+.basket-app__delivery-method>label>input:checked {
+    border: 6px solid #72aa70;
+}
+.basket-app__delivery-more {
+    overflow: hidden;
+
+}
+.basket-app__delivery-more>label {
+    font: 1em sans-serif;
+    display: flex;
+    align-items: center;
+}
+.basket-app__delivery-more>label>input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 5px 15px 5px 40px;
+    appearance: none;
+    border-radius: 50%;
+    border: 1px solid #72aa70;
+    transition: border 0.2s;
+}
+.basket-app__delivery-more>label>input:checked {
+    border: 6px solid #72aa70;
+}
+.basket-app__delivery-next {
+    font: bold 1em sans-serif;
+    line-height: 2.5em;
+    text-align: center;
+    margin: 5px 10px 10px;
+    border-radius: 8px;
+    border: 1px solid #72aa70;
+    color: #72aa70;
 }

@@ -81,5 +81,8 @@ function start() {
     script.basketApp = new BasketApp();
     script.basketApp.functionBeforeStart = () => script.body.disableScroll();
     script.basketApp.functionBeforeStop = () => script.body.enableScroll();
+
+    // DEVELOPMENT
+    script.basketApp.start();
 }
 window.addEventListener("load", start);

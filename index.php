@@ -116,8 +116,8 @@ if (count($products) > 12) {
     <!-- Basket app -->
     <div class="basket-app">
         <div class="basket-app__body">
-            <div class="basket-app__notification">Зараз у компанії неробочий час. Ваше замовлення буде оброблено з 09:00 найближчого робочого дня (завтра, 27.07)</div>
             <div class="basket-app__screen">
+                <div class="basket-app__notification">Зараз у компанії неробочий час. Ваше замовлення буде оброблено з 09:00 найближчого робочого дня (завтра, 27.07)</div>
                 <div class="basket-app__product-list">
                     <div class="basket-app__product">
                         <div class="basket-app__photo">
@@ -187,6 +187,146 @@ if (count($products) > 12) {
                         </div>
                         <img class="basket-app__delete-button" src="/images/delete_black.png" width="20" height="20">
                     </div>
+                </div>
+                <div class="basket-app__resume-wrap">
+                    <div class="basket-app__resume">
+                        До оплати без доставки:
+                        <span>3250 грн</span>
+                    </div>
+                    <div class="basket-app__continue-button basket-app__continue-button_dark">Оформити замовлення</div>
+                    <div class="basket-app__continue-button">Продовжити покупки</div>
+                </div>
+            </div>
+            <div class="basket-app__screen">
+                <div class="basket-app__subtitle">
+                    Контактні дані
+                    <span>Змінити</span>
+                </div>
+                <div class="basket-app__block">
+                    <div class="basket-app__field">
+                        <div class="basket-app__field-signature">Телефон</div>
+                        <input class="basket-app__field-input" type="text">
+                    </div>
+                    <div class="basket-app__field">
+                        <div class="basket-app__field-signature">Прізвище</div>
+                        <input class="basket-app__field-input" type="text">
+                    </div>
+                    <div class="basket-app__field">
+                        <div class="basket-app__field-signature">Ім'я</div>
+                        <input class="basket-app__field-input" type="text">
+                    </div>
+                </div>
+                <div class="basket-app__subtitle">
+                    Спосіб доставки
+                    <span>Змінити</span>
+                </div>
+                <div class="basket-app__delivery">
+                    <div class="basket-app__delivery-head">
+                        <div>
+                            <img src="/images/tick_white.png" width="20" heigth="20">
+                            <span>Нова пошта</span>
+                        </div>
+                        <div>
+                            EXTRA
+                        </div>
+                    </div>
+                    <div class="basket-app__delivery-body">
+                        <div class="basket-app__delivery-method">
+                            <label class="basket-app__delivery-method" for="deliveryMethod1">
+                                <input type="radio" name="deliveryMethod" id="deliveryMethod1" value="1">
+                                <span>Нова пошта</span>
+                            </label>
+                            <div class="basket-app__delivery-more">
+                                <label for="deliveryMore1">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore1" value="1">
+                                    <span>У відделення</span>
+                                </label>
+                                <label for="deliveryMore2">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore2" value="2">
+                                    <span>У поштомат</span>
+                                </label>
+                                <label for="deliveryMore3">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore3" value="3">
+                                    <span>Кур'єром</span>
+                                </label>
+                                <div class="basket-app__delivery-next">Продовжити</div>
+                            </div>
+                        </div>
+                        <div class="basket-app__delivery-method">
+                            <label class="basket-app__delivery-method" for="deliveryMethod2">
+                                <input type="radio" name="deliveryMethod" id="deliveryMethod2" value="2">
+                                <span>Укрпошта Стандарт</span>
+                            </label>
+                        </div>
+                        <div class="basket-app__delivery-method">
+                            <label class="basket-app__delivery-method" for="deliveryMethod3">
+                                <input type="radio" name="deliveryMethod" id="deliveryMethod3" value="3">
+                                <span>Укрпошта Експрес</span>
+                            </label>
+                        </div>
+                        <div class="basket-app__delivery-method">
+                            <label class="basket-app__delivery-method" for="deliveryMethod4">
+                                <input type="radio" name="deliveryMethod" id="deliveryMethod4" value="4">
+                                <span>Самовивіз</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="basket-app__subtitle">
+                    Оплата
+                    <span>Змінити</span>
+                </div>
+                <div class="basket-app__block">
+                    <div class="basket-app__payment">
+                        <div class="basket-app__payment-head">
+                            <div>
+                                <img src="/images/tick_white.png" width="20" heigth="20">
+                                <span>Безготівкова оплата (потрібен дзвінок менеджера)</span>
+                            </div>
+                        </div>
+                        <div class="basket-app__payment-body">
+                            <label for="paymentMethod1">
+                                <input type="radio" name="paymentMethod" id="paymentMethod1" value="1">
+                                <span>Безготівкова оплата (потрібен дзвінок менеджера)</span>
+                            </label>
+                            <label for="paymentMethod2">
+                                <input type="radio" name="paymentMethod" id="paymentMethod2" value="2">
+                                <span>Післяплата "Нова Пошта"</span>
+                            </label>
+                            <label for="paymentMethod3">
+                                <input type="radio" name="paymentMethod" id="paymentMethod3" value="3">
+                                <span style="font-weight: bold">Отримати та оплатити замовлення у м.Нововолинськ (вул. Пирогова)</span>
+                            </label>
+                            <label for="paymentMethod4">
+                                <input type="radio" name="paymentMethod" id="paymentMethod4" value="4">
+                                <span>Безготівкова оплата (отримати рахунок БЕЗ дзвінка менеджера)</span>
+                            </label>
+                            <label for="paymentMethod5">
+                                <input type="radio" name="paymentMethod" id="paymentMethod5" value="5">
+                                <span>ОПЛАТА БЕЗ УТОЧНЕНЬ до замовлення (реквізити у розділі "Оплата і доставка")</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="basket-app__block">
+                    <div class="basket-app__comment">
+                        <div class="basket-app__comment-signature">Ваш коментар до замовлення</div>
+                        <div class="basket-app__comment-show">
+                            <img src="/images/arrow-right.png" width="8" height="12">
+                        </div>
+                        <div class="basket-app__comment-body">
+                            <div class="basket-app__comment-field"><textarea></textarea></div>
+                            <div class="basket-app__comment-limitation">Залишилось символів: <span>255</span></div>
+                            <div class="basket-app__continue-button basket-app__comment-button">Зберегти</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="basket-app__block">
+                    <div class="basket-app__resume">
+                        Вартість замовлення:
+                        <span>350 грн</span>
+                    </div>
+                    <div class="basket-app__continue-button basket-app__continue-button_dark">Оформити замовлення</div>
                 </div>
             </div>
         </div>
