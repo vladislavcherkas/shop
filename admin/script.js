@@ -366,17 +366,7 @@ class AdministratorsWindow {
         this.close();
     }
 }
-class Categories {
-    constructor() {
-        this.dom = {
-            categories__item: window.document.querySelectorAll(".categories__item"),
-        };
-        this.dom.categories__item[0].addEventListener("click", () => this.back());
-    }
-    back() {
-        instances.layout.switch(".main");
-    }
-}
+class Categories {}
 class Settings {
     dom = {};
     id = false;

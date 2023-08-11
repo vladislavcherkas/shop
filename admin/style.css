@@ -266,15 +266,7 @@ h2 {
 }
 
 /* Categories */
-.categories__header {
-    background-color: #72aa70;
-    display: flex;
-    justify-content: space-between;
-}
-.categories__item {
-    display: flex;
-    padding: 10px;
-}
+
 
 /* Products */
 .products__header {

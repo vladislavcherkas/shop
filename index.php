@@ -226,9 +226,6 @@ if (count($products) > 12) {
                             <img src="/images/tick_white.png" width="20" heigth="20">
                             <span>Нова пошта</span>
                         </div>
-                        <div>
-                            EXTRA
-                        </div>
                     </div>
                     <div class="basket-app__delivery-body">
                         <div class="basket-app__delivery-method">
@@ -249,6 +246,18 @@ if (count($products) > 12) {
                                     <input type="radio" name="deliveryMore" id="deliveryMore3" value="3">
                                     <span>Кур'єром</span>
                                 </label>
+                                <div class="basket-app__delivery-field">
+                                    <span>Місто</span>
+                                    <div>
+                                        <input type="text" placeholder="Вкажіть місто">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-field">
+                                    <span>Відділення</span>
+                                    <div>
+                                        <input type="text" placeholder="Номер відділення">
+                                    </div>
+                                </div>
                                 <div class="basket-app__delivery-next">Продовжити</div>
                             </div>
                         </div>
@@ -257,18 +266,100 @@ if (count($products) > 12) {
                                 <input type="radio" name="deliveryMethod" id="deliveryMethod2" value="2">
                                 <span>Укрпошта Стандарт</span>
                             </label>
+                            <div class="basket-app__delivery-more">
+                                <label for="deliveryMore1">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore1" value="1">
+                                    <span>У відделення</span>
+                                </label>
+                                <label hidden for="deliveryMore2">
+                                    <input hidden type="radio" name="deliveryMore" id="deliveryMore2" value="2">
+                                    <span hidden>У поштомат</span>
+                                </label>
+                                <label for="deliveryMore3">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore3" value="3">
+                                    <span>Кур'єром</span>
+                                </label>
+                                <div class="basket-app__delivery-field">
+                                    <span>Місто</span>
+                                    <div>
+                                        <input type="text" placeholder="Вкажіть місто">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-field">
+                                    <span>Відділення</span>
+                                    <div>
+                                        <input type="text" placeholder="Індекс відділення">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-next">Продовжити</div>
+                            </div>
                         </div>
                         <div class="basket-app__delivery-method">
                             <label class="basket-app__delivery-method" for="deliveryMethod3">
                                 <input type="radio" name="deliveryMethod" id="deliveryMethod3" value="3">
                                 <span>Укрпошта Експрес</span>
                             </label>
+                            <div class="basket-app__delivery-more">
+                                <label for="deliveryMore1">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore1" value="1">
+                                    <span>У відделення</span>
+                                </label>
+                                <label hidden for="deliveryMore2">
+                                    <input hidden type="radio" name="deliveryMore" id="deliveryMore2" value="2">
+                                    <span hidden>У поштомат</span>
+                                </label>
+                                <label for="deliveryMore3">
+                                    <input type="radio" name="deliveryMore" id="deliveryMore3" value="3">
+                                    <span>Кур'єром</span>
+                                </label>
+                                <div class="basket-app__delivery-field">
+                                    <span>Місто</span>
+                                    <div>
+                                        <input type="text" placeholder="Вкажіть місто">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-field">
+                                    <span>Відділення</span>
+                                    <div>
+                                        <input type="text" placeholder="Індекс відділення">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-next">Продовжити</div>
+                            </div>
                         </div>
                         <div class="basket-app__delivery-method">
                             <label class="basket-app__delivery-method" for="deliveryMethod4">
                                 <input type="radio" name="deliveryMethod" id="deliveryMethod4" value="4">
                                 <span>Самовивіз</span>
                             </label>
+                            <div class="basket-app__delivery-more">
+                                <label hidden for="deliveryMore1">
+                                    <input hidden type="radio" name="deliveryMore" id="deliveryMore1" value="1">
+                                    <span></span>
+                                </label>
+                                <label hidden for="deliveryMore2">
+                                    <input hidden type="radio" name="deliveryMore" id="deliveryMore2" value="2">
+                                    <span></span>
+                                </label>
+                                <label hidden for="deliveryMore3">
+                                    <input hidden type="radio" name="deliveryMore" id="deliveryMore3" value="3">
+                                    <span></span>
+                                </label>
+                                <div hidden class="basket-app__delivery-field">
+                                    <span></span>
+                                    <div>
+                                        <input type="text" placeholder="Вкажіть місто">
+                                    </div>
+                                </div>
+                                <div hidden class="basket-app__delivery-field">
+                                    <span></span>
+                                    <div>
+                                        <input type="text" placeholder="Номер відділення">
+                                    </div>
+                                </div>
+                                <div class="basket-app__delivery-location">м. Кременчук</div>
+                                <div class="basket-app__delivery-next">Продовжити</div>
+                            </div>
                         </div>
                     </div>
                 </div>
