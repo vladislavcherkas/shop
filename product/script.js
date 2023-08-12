@@ -35,11 +35,8 @@ class Gallery extends Buttons {
         this.addEventsListenerAll();
     }
     addEventsListenerAll() {
-        this.dom.fullScreen.addEventListener("touchstart", () => {this.switchFullscreen()});
         this.dom.fullScreen.addEventListener("click", () => {this.switchFullscreen()});
-        this.dom.left.addEventListener("touchstart", () => {this.scrollLeft()});
         this.dom.left.addEventListener("click", () => {this.scrollLeft()});
-        this.dom.right.addEventListener("touchstart", () => {this.scrollRight()});
         this.dom.right.addEventListener("click", () => {this.scrollRight()});
     }
     scrollRight() {
