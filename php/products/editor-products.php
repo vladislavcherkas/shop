@@ -36,7 +36,8 @@ class EditorProducts {
         for ($id_free = 1; true; $id_free++) {
             $exist_id = false;
             foreach ($list_products as $product) {
-                if ($id_free === $product["id"]) {
+                $id = intval($product["id"]);
+                if ($id_free === $id) {
                     $exist_id = true;
                 }
             }
