@@ -147,12 +147,12 @@ a {
     padding: 0 0 10px 0;
 }
 .footer__title {
-    font: bold 18px sans-serif;
+    font: 1.5em sans-serif;
     margin: 10px;
 }
 .footer__link {
     margin: 0 10px;
-    font: bold 1em sans-serif;
+    font: 1em sans-serif;
     color: blue;
 }
 .footer__contacts {
