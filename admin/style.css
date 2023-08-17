@@ -541,3 +541,32 @@ h2 {
     padding: 0 20px;
     margin: 0 10px 10px 0;
 }
+
+/* Load animation */
+.load-animation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    overflow: hidden;
+}
+.load-animation__icon {
+    transform: rotate(0deg);
+}
+.load-animation__error {
+    font: 2em sans-serif;
+    text-align: center;
+    opacity: 0;
+}
+.load-animation__error>img {
+    margin: 0 auto;
+    display: flex;
+}
+.load-animation__text {
+    padding: 20px 0 50px 0;
+}

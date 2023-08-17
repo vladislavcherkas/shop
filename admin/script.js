@@ -282,16 +282,8 @@ class Administrators {
                     idTd = idTd + 3;
                 }
             };
-            const fillColumn3 = () => {
-                let idTd = 2;
-                for (let id in data) {
-                    this.dom.administrators__rowINtd[idTd].textContent = data[id].password;
-                    idTd = idTd + 3;
-                }
-            };
             fillColumn1();
             fillColumn2();
-            fillColumn3();
         }
         this.getListOfServer(receiver);
     }
@@ -366,7 +358,9 @@ class AdministratorsWindow {
         this.close();
     }
 }
-class Categories {}
+class Categories {
+
+}
 class Settings {
     dom = {};
     id = false;
@@ -1276,19 +1270,86 @@ class Features {
 }
 const app = {};
 function start() {
-    instances.layout = new Layout();
-    instances.login = new Login();
-    instances.authentication = new Authentication();
-    instances.main = new Main();
-    instances.administrators = new Administrators();
-    instances.administratorsWindow = new AdministratorsWindow();
-    instances.categories = new Categories();
-    instances.settings = new Settings();
-    instances.settingsWindow = new SettingsWindow();
-    instances.products = new Products();
-    instances.productsWindow = new ProductsWindow();
-    instances.productsWindowFiller = new ProductsWindowFiller();
-    instances.productsWindowFillerUtility = new ProductsWindowFillerUtility();
-    instances.features = new Features();
+    return new Promise((resolve) => {
+        instances.layout = new Layout();
+        instances.login = new Login();
+        instances.authentication = new Authentication();
+        instances.main = new Main();
+        instances.administrators = new Administrators();
+        instances.administratorsWindow = new AdministratorsWindow();
+        instances.categories = new Categories();
+        instances.settings = new Settings();
+        instances.settingsWindow = new SettingsWindow();
+        instances.products = new Products();
+        instances.productsWindow = new ProductsWindow();
+        instances.productsWindowFiller = new ProductsWindowFiller();
+        instances.productsWindowFillerUtility = new ProductsWindowFillerUtility();
+        instances.features = new Features();
+        resolve();
+    });
 }
-window.addEventListener("load", start);
+class LoadView {
+    static #rotationInterval;
+    static start() {
+        const ICON = window.document.querySelector('.load-animation__icon');
+        let rotate = 0;
+        this.#rotationInterval = setInterval(() => {
+            ICON.style.transform = `rotate(${rotate}deg)`;
+            rotate += 22.5;
+        }, 50);
+    }
+    static stop() {
+        const ELEMENT = window.document.querySelector('.load-animation');
+        let opacity = 100;
+        return new Promise((resolve, reject) => {
+            const INTERVAL = setInterval(() => {
+                ELEMENT.style.opacity = (opacity -= 10) + '%';
+                if (opacity <= 0) {
+                    clearInterval(INTERVAL);
+                    clearInterval(this.#rotationInterval);
+                    ELEMENT.style.height = 0;
+                    resolve();
+                }
+            }, 20);
+        });
+    }
+    static error() {
+        const ICON = window.document.querySelector('.load-animation__icon');
+        ICON.setAttribute('hidden', '');
+        const ERROR = window.document.querySelector('.load-animation__error');
+        ERROR.removeAttribute('hidden');
+        clearInterval(this.#rotationInterval);
+        let opacity = 0;
+        const SHOW = setInterval(() => {
+            ERROR.style.opacity = (opacity += 10) + '%';
+            if (opacity >= 100) clearInterval(SHOW);
+        }, 20);
+    }
+}
+const TIMEOUT = 10000;
+const FILES = ['index.html', 'style.css'];
+let error = false;
+function load() {
+    LoadView.start();
+    let time = 0;
+    const DELAY = 500;
+    const INTERVAL = setInterval(() => {
+        time += DELAY;
+        if (FILES.length === 0) {
+            clearInterval(INTERVAL);
+            start().then(() => LoadView.stop());
+        }
+        if ((time > TIMEOUT) || error) {
+            clearInterval(INTERVAL);
+            LoadView.error();
+        }
+    }, DELAY);
+    for (let file of FILES) {
+        fetch(file, { method: 'GET' }).then((response) => {
+            if (response.status === 200) FILES.shift();
+            else error = true;
+        });
+        if (error) break;
+    }
+}
+window.addEventListener("load", load);
