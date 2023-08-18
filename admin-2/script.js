@@ -92,16 +92,7 @@ class App {
     static async loadHTML() {
         return new Promise((resolve) => {
             const request = new XMLHttpRequest();
-            request.addEventListener('abort', () => {
-                console.log('abort');
-                resolve();
-            });
-            request.addEventListener('error', () => {
-                console.log('error');
-                resolve();
-            });
             request.addEventListener('load', () => {
-                console.log('load');
                 resolve();
             });
             request.open('GET', 'index.html');
