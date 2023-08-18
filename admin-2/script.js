@@ -7,7 +7,7 @@ class OpacityAnimation {
                     clearInterval(INTERVAL);
                     resolve();
                 }
-                type ? opacity += 5 : opacity -= 5;
+                type ? opacity += 10 : opacity -= 10;
                 element.style.opacity = opacity + '%';
             }, 20);
         });
@@ -84,22 +84,39 @@ class App {
         Load.play();
         Load.show();
         await this.loadHTML();
-        Load.setProgress(50);
-        await Load.hide();
-        Load.pause();
-        Load.close();
+        Load.setProgress(20);
+        await this.loadCSS();
+        Load.setProgress(70);
+        await this.loadJS();
     }
     static async loadHTML() {
         return new Promise((resolve) => {
-            const request = new XMLHttpRequest();
-            request.addEventListener('load', () => {
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                const ADMIN = window.document.querySelector('.admin');
+                ADMIN.insertAdjacentHTML('beforeend', xhr.responseText);
                 resolve();
             });
-            request.open('GET', 'index.html');
-            request.send();
+            xhr.open('GET', 'admin.html');
+            xhr.send();
         });
     }
-    static loadCSS() {}
-    static loadJS() {}
+    static async loadCSS() {
+        return new Promise((resolve) => {
+            const LINK = window.document.createElement('link');
+            LINK.rel = 'stylesheet';
+            LINK.href = 'admin.css';
+            window.document.head.appendChild(LINK);
+            resolve();
+        });
+    }
+    static async loadJS() {
+        return new Promise((resolve) => {
+            const SCRIPT = window.document.createElement('script');
+            SCRIPT.src = 'admin.js';
+            window.document.body.appendChild(SCRIPT);
+            resolve();
+        });
+    }
 }
-window.addEventListener("load", () => App.start());
+window.addEventListener('load', () => App.start());
