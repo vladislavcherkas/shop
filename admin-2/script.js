@@ -1,5 +1,6 @@
 class OpacityAnimation {
-    static play(element, type) {
+    static play(selector, type) {
+        const ELEMENT = window.document.querySelector(selector);
         return new Promise((resolve) => {
             let opacity = type ? 0 : 100;
             const INTERVAL = setInterval(() => {
@@ -8,7 +9,7 @@ class OpacityAnimation {
                     resolve();
                 }
                 type ? opacity += 10 : opacity -= 10;
-                element.style.opacity = opacity + '%';
+                ELEMENT.style.opacity = opacity + '%';
             }, 20);
         });
     }
@@ -21,12 +22,10 @@ class Screen {
         window.document.querySelector(selector).parentNode.style.height = '0';
     }
     static show(selector) {
-        const ELEMENT = window.document.querySelector(selector);
-        return OpacityAnimation.play(ELEMENT, true);
+        return OpacityAnimation.play(selector, true);
     }
     static hide(selector) {
-        const ELEMENT = window.document.querySelector(selector);
-        return OpacityAnimation.play(ELEMENT, false);
+        return OpacityAnimation.play(selector, false);
     }
 }
 class Load {
@@ -62,9 +61,9 @@ class Load {
 class App {
     static async start() {
         window.document.body.style.opacity = 1;
-        Load.open();
-        Load.play();
-        Load.show();
+        Screen.open('.load');
+        Load.play('.load');
+        Screen.show('.load');
         await this.loadHTML();
         Load.setProgress(70);
         await this.loadCSS();
