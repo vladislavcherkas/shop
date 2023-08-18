@@ -13,26 +13,26 @@ class OpacityAnimation {
         });
     }
 }
+class Screen {
+    static open(selector) {
+        window.document.querySelector(selector).parentNode.style.height = '100%';
+    }
+    static close(selector) {
+        window.document.querySelector(selector).parentNode.style.height = '0';
+    }
+    static show(selector) {
+        const ELEMENT = window.document.querySelector(selector);
+        return OpacityAnimation.play(ELEMENT, true);
+    }
+    static hide(selector) {
+        const ELEMENT = window.document.querySelector(selector);
+        return OpacityAnimation.play(ELEMENT, false);
+    }
+}
 class Load {
     static #iconInterval;
     static #iconDeg = 0;
     static #progress = 2;
-    static open() {
-        const LOAD = window.document.querySelector('.load');
-        LOAD.parentNode.style.height = '100%';
-    }
-    static close() {
-        const LOAD = window.document.querySelector('.load');
-        LOAD.parentNode.style.height = '0';
-    }
-    static hide() {
-        const ELEMENT = window.document.querySelector('.load');
-        return OpacityAnimation.play(ELEMENT, false);
-    }
-    static show() {
-        const ELEMENT = window.document.querySelector('.load');
-        return OpacityAnimation.play(ELEMENT, true);
-    }
     static play() {
         const ICON = window.document.querySelector('.load__icon');
         let turn = 22.5;
@@ -59,24 +59,6 @@ class Load {
         }, 20);
     }
 }
-class Error {
-    static open() {
-        const ERROR = window.document.querySelector('.error');
-        ERROR.parentNode.style.height = '100%';
-    }
-    static close() {
-        const ERROR = window.document.querySelector('.error');
-        ERROR.parentNode.style.height = '0';
-    }
-    static hide() {
-        const ELEMENT = window.document.querySelector('.error');
-        return OpacityAnimation.play(ELEMENT, false);
-    }
-    static show() {
-        const ELEMENT = window.document.querySelector('.error');
-        return OpacityAnimation.play(ELEMENT, true);
-    }
-}
 class App {
     static async start() {
         window.document.body.style.opacity = 1;
@@ -84,9 +66,9 @@ class App {
         Load.play();
         Load.show();
         await this.loadHTML();
-        Load.setProgress(20);
-        await this.loadCSS();
         Load.setProgress(70);
+        await this.loadCSS();
+        Load.setProgress(90);
         await this.loadJS();
     }
     static async loadHTML() {
