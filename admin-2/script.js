@@ -59,18 +59,20 @@ class Load {
     }
 }
 class App {
+    static #timeout;
     static async start() {
+        this.#setTimeout(120000);
         window.document.body.style.opacity = 1;
         Screen.open('.load');
-        Load.play('.load');
+        Load.play();
         Screen.show('.load');
-        await this.loadHTML();
+        await this.#loadHTML();
         Load.setProgress(70);
-        await this.loadCSS();
+        await this.#loadCSS();
         Load.setProgress(90);
-        await this.loadJS();
+        await this.#loadJS();
     }
-    static async loadHTML() {
+    static async #loadHTML() {
         return new Promise((resolve) => {
             const xhr = new XMLHttpRequest();
             xhr.addEventListener('load', () => {
@@ -82,7 +84,7 @@ class App {
             xhr.send();
         });
     }
-    static async loadCSS() {
+    static async #loadCSS() {
         return new Promise((resolve) => {
             const LINK = window.document.createElement('link');
             LINK.rel = 'stylesheet';
@@ -91,13 +93,26 @@ class App {
             resolve();
         });
     }
-    static async loadJS() {
+    static async #loadJS() {
         return new Promise((resolve) => {
             const SCRIPT = window.document.createElement('script');
             SCRIPT.src = 'admin.js';
             window.document.body.appendChild(SCRIPT);
             resolve();
         });
+    }
+    static #setTimeout(time) {
+        this.#timeout = setTimeout(() => {
+            Screen.hide('.load').then(() => {
+                Load.pause();
+                Screen.close('.load');
+                Screen.open('.error');
+                Screen.show('.error');
+            });
+        }, time);
+    }
+    static killTimeout() {
+        clearInterval(this.#timeout);
     }
 }
 window.addEventListener('load', () => App.start());

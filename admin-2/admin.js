@@ -1,15 +1,11 @@
-class Main {
-    open() {
-
-    }
-}
+class Main {}
 class Admin {
     static async start() {
+        App.killTimeout();
         Load.setProgress(100);
-        await Load.hide();
+        await Screen.hide('.load');
         Load.pause();
-        Load.close();
-        Main.open();
+        Screen.close('.load');
     }
 }
 Admin.start();
