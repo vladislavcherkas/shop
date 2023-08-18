@@ -177,7 +177,7 @@ class Main {
         this.dom.main__item[0].addEventListener("click", () => this.leave());
         this.dom.main__button[0].addEventListener("click", () => this.open(".products"));
         this.dom.main__button[1].addEventListener("click", () => this.open(".settings"));
-        this.dom.main__button[2].addEventListener("click", () => this.open(".categories"));
+        this.dom.main__button[2].addEventListener("click", () => Categories.open());
         this.dom.main__button[3].addEventListener("click", () => this.open(".administrators"));
     }
     leave() {
@@ -359,7 +359,9 @@ class AdministratorsWindow {
     }
 }
 class Categories {
-
+    static open() {
+        console.log('open');
+    }
 }
 class Settings {
     dom = {};
@@ -1275,9 +1277,9 @@ function start() {
         instances.login = new Login();
         instances.authentication = new Authentication();
         instances.main = new Main();
+        instances.categories = new Categories();
         instances.administrators = new Administrators();
         instances.administratorsWindow = new AdministratorsWindow();
-        instances.categories = new Categories();
         instances.settings = new Settings();
         instances.settingsWindow = new SettingsWindow();
         instances.products = new Products();
@@ -1327,7 +1329,7 @@ class LoadView {
     }
 }
 const TIMEOUT = 10000;
-const FILES = ['index.html', 'style.css'];
+const FILES = [];
 let error = false;
 function load() {
     LoadView.start();

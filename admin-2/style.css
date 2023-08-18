@@ -1,0 +1,62 @@
+body {
+    opacity: 0;
+    font: 14px sans-serif;
+    overflow: hidden;
+}
+
+/* Admin */
+.admin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+.admin__screen {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+}
+.admin__screen>div {
+    opacity: 0;
+}
+
+/* Load */
+.load {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.load__progress {
+    width: 50%;
+    height: 10px;
+    margin: 50px 0 0 0;
+    border-radius: 5px;
+    background-color: #bbb;
+    overflow: hidden;
+}
+.load__decoration {
+    width: 2%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: blue;
+}
+
+/* Error */
+.error {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.error__text {
+    font-size: 2em;
+    text-align: center;
+    margin: 50px 0 0 0;
+}
