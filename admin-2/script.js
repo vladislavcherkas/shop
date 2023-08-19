@@ -7,10 +7,11 @@ class OpacityAnimation {
                 if (type ? opacity >= 100 : opacity <= 0) {
                     clearInterval(INTERVAL);
                     resolve();
+                } else {
+                    type ? opacity += 25 : opacity -= 25;
+                    ELEMENT.style.opacity = opacity + '%';
                 }
-                type ? opacity += 10 : opacity -= 10;
-                ELEMENT.style.opacity = opacity + '%';
-            }, 20);
+            }, 15);
         });
     }
 }
