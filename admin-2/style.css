@@ -3,6 +3,13 @@ body {
     font: 14px sans-serif;
     overflow: hidden;
 }
+input {
+    box-sizing: border-box;
+    padding: 0;
+}
+input:focus {
+    outline: none;
+}
 
 /* Admin */
 .admin {

@@ -1,11 +1,66 @@
-/* Main */
-.main {
-    height: 10px;
-    background-color: green;
+/* Login */
+.login {
+    box-sizing: border-box;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: #eee;
 }
-
-/* Categories */
-.categories {
-    height: 10px;
-    background-color: blue;
+.login__body {
+    border-radius: 16px;
+    border: 1px solid black;
+    max-width: 500px;
+    padding: 10px 30px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+.login__title {
+    font: bold 1.5em sans-serif;
+    line-height: 2em;
+    text-align: center;
+    width: 96px;
+}
+.login__field {
+    position: relative;
+    margin: 1em 0 0 0;
+}
+.login__signature {
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    font-size: 0.9em;
+    line-height: 1em;
+    padding: 0 5px;
+    border-radius: 0.5em;
+    color: #1d64ff;
+    background-color: #fff;
+}
+.login__input {
+    font: 1em sans-serif;
+    line-height: 2em;
+    padding: 0 0.5em;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #1d64ff;
+}
+.login__confirm {
+    user-select: none;
+    max-width: 120px;
+    margin: 1em 0 0 auto;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    color: white;
+    background-color: #1d64ff;
+    transition:
+        background-color 200ms,
+        border-color 100ms;
+}
+.login__confirm:hover {
+    background-color: #4882fd;
+}
+.login__confirm:active {
+    border-color: black;
 }
